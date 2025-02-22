@@ -28,16 +28,10 @@ export const ERROR_MESSAGES = {
 };
 
 export const INPUT_MESSAGES = {
-  purchaseAmount: () => '구입금액을 입력해 주세요.',
-  winNumber: () => '당첨 번호를 입력해 주세요.',
-  bonusNumber: () => '보너스 번호를 입력해 주세요.',
-  retry: () => `다시 시작하시겠습니까? (${YES}/${NO})`,
-};
-
-export const OUTPUT_MESSAGES = {
-  purchaseCount: (count) => `${count}개를 구매했습니다.`,
-  statistics: () => '당첨 통계',
-  divider: () => '------------',
+  purchaseAmount: '구입금액을 입력해 주세요.',
+  winNumber: '당첨 번호를 입력해 주세요.',
+  bonusNumber: '보너스 번호를 입력해 주세요.',
+  retry: `다시 시작하시겠습니까? (${YES}/${NO})`,
 };
 
 export const LOTTO_RANK = {

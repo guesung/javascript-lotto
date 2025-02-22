@@ -4,7 +4,7 @@ import Validator from '../validator/Validator.js';
 
 export default class InputView {
   static async readPurchaseAmount() {
-    const rawPurchaseAmount = await readLineAsync(INPUT_MESSAGES.purchaseAmount());
+    const rawPurchaseAmount = await readLineAsync(INPUT_MESSAGES.purchaseAmount);
 
     const purchaseAmount = Number(rawPurchaseAmount);
     Validator.validatePurchaseAmount(purchaseAmount);
@@ -12,7 +12,7 @@ export default class InputView {
   }
 
   static async readWinNumbers() {
-    const rawWinNumber = await readLineAsync(INPUT_MESSAGES.winNumber());
+    const rawWinNumber = await readLineAsync(INPUT_MESSAGES.winNumber);
     const winNumbers = rawWinNumber.split(SEPERATOR).map(Number);
 
     Validator.validateWinNumbers(winNumbers);
@@ -20,7 +20,7 @@ export default class InputView {
   }
 
   static async readBonusNumber(winNumbers) {
-    const rawBonusNumber = await readLineAsync(INPUT_MESSAGES.bonusNumber());
+    const rawBonusNumber = await readLineAsync(INPUT_MESSAGES.bonusNumber);
     const bonusNumber = Number(rawBonusNumber);
 
     Validator.validateBonusNumber(bonusNumber, winNumbers);
@@ -29,7 +29,7 @@ export default class InputView {
   }
 
   static async readRetry() {
-    const retryCommand = await readLineAsync(INPUT_MESSAGES.retry());
+    const retryCommand = await readLineAsync(INPUT_MESSAGES.retry);
 
     Validator.validateRetry(retryCommand);
 
