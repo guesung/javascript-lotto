@@ -73,6 +73,24 @@ describe('Application', () => {
         expect(consoleLogSpy).toHaveBeenCalledWith(expectedConsoleLogMessage);
       });
     });
+
+    test('재시작시 게임을 다시 시작한다.', async () => {
+      mockReadLineAsync(['1000', '1,2,3,4,5,6', '7', YES, '1000', '1,2,3,4,5,6', '7', NO]);
+      mockGenerateUniqueNumbers([
+        [1, 2, 3, 4, 5, 7],
+        [1, 2, 3, 4, 5, 8],
+      ]);
+
+      const app = new App();
+      await app.run();
+
+      [
+        [1, 2, 3, 4, 5, 7],
+        [1, 2, 3, 4, 5, 8],
+      ].forEach((expectedConsoleLogMessage) => {
+        expect(consoleLogSpy).toHaveBeenCalledWith(expectedConsoleLogMessage);
+      });
+    });
   });
 
   describe('예외 사항 처리', () => {
