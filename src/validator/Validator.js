@@ -1,4 +1,4 @@
-import { COMMAND, ERROR_MESSAGES, LOTTO_PRICE, MAX_LOTTO_NUMBER, MIN_LOTTO_NUMBER } from '../lib/constants.js';
+import { ERROR_MESSAGES, LOTTO_PRICE, MAX_LOTTO_NUMBER, MIN_LOTTO_NUMBER, NO, YES } from '../lib/constants.js';
 import { checkUniqueArray } from '../lib/utils.js';
 
 export default class Validator {
@@ -44,7 +44,7 @@ export default class Validator {
   }
 
   static validateRetry(retryCommand) {
-    if (retryCommand !== COMMAND.yes && retryCommand !== COMMAND.no) {
+    if (retryCommand !== YES && retryCommand !== NO) {
       throw new Error(ERROR_MESSAGES.retry.yesOrNo);
     }
   }
