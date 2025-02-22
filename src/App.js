@@ -4,7 +4,7 @@ import { calculateProfitRate, retryUntilSuccess } from './lib/utils.js';
 import InputView from './views/InputView.js';
 import OutputView from './views/OutputView.js';
 
-class App {
+export default class App {
   async run() {
     const purchaseAmount = await this.#retryReadUntilSuccess(InputView.readPurchaseAmount);
     const purchaseCount = LottoShop.calculateLottoCount(purchaseAmount);
@@ -34,5 +34,3 @@ class App {
     return retryUntilSuccess(callbackFunction, (error) => OutputView.printErrorMessage(error));
   }
 }
-
-export default App;

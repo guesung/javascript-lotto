@@ -1,19 +1,19 @@
-const ERROR_MESSAGES_DEFAULT = '[ERROR]';
+const ERROR_MESSAGE_DEFAULT = '[ERROR]';
 export const ERROR_MESSAGES = {
   purchaseAmount: {
-    positiveInteger: `${ERROR_MESSAGES_DEFAULT} 양의 정수를 입력해주세요.`,
-    thousandUnit: `${ERROR_MESSAGES_DEFAULT} 1,000단위로 입력해주세요.`,
+    positiveInteger: `${ERROR_MESSAGE_DEFAULT} 양의 정수를 입력해주세요.`,
+    thousandUnit: `${ERROR_MESSAGE_DEFAULT} 1,000단위로 입력해주세요.`,
   },
   winNumber: {
-    unique: `${ERROR_MESSAGES_DEFAULT} 중복되지 않은 숫자로 입력해주세요.`,
-    range: `${ERROR_MESSAGES_DEFAULT} 6개의 1~45 사이의 정수로 입력해주세요.`,
+    unique: `${ERROR_MESSAGE_DEFAULT} 중복되지 않은 숫자로 입력해주세요.`,
+    range: `${ERROR_MESSAGE_DEFAULT} 6개의 1~45 사이의 정수로 입력해주세요.`,
   },
   bonusNumber: {
-    unique: `${ERROR_MESSAGES_DEFAULT} 당첨 번호와 중복되지 않게 입력해주세요.`,
-    range: `${ERROR_MESSAGES_DEFAULT} 1개의 1~45 사이의 정수로 입력해주세요.`,
+    unique: `${ERROR_MESSAGE_DEFAULT} 당첨 번호와 중복되지 않게 입력해주세요.`,
+    range: `${ERROR_MESSAGE_DEFAULT} 1개의 1~45 사이의 정수로 입력해주세요.`,
   },
   retry: {
-    yesOrNo: `${ERROR_MESSAGES_DEFAULT} y 또는 n을 입력해주세요.`,
+    yesOrNo: `${ERROR_MESSAGE_DEFAULT} y 또는 n을 입력해주세요.`,
   },
 };
 

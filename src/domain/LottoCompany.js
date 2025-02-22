@@ -1,7 +1,6 @@
 import { LOTTO_RANK, NO_WINNING } from '../lib/constants.js';
-import { getIntersectCount } from '../lib/utils.js';
 
-class LottoCompany {
+export default class LottoCompany {
   #winNumbers;
   #bonusNumber;
   constructor(winNumbers, bonusNumber) {
@@ -32,4 +31,3 @@ class LottoCompany {
     return lottoRanks.reduce((prev, cur) => (cur === NO_WINNING ? prev : prev + LOTTO_RANK[cur].prize), 0);
   }
 }
-export default LottoCompany;
