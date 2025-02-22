@@ -1,8 +1,6 @@
-import LottoCompany from './domain/LottoCompany.js';
-import LottoShop from './domain/LottoShop.js';
+import { LottoCompany, LottoShop } from './domain/index.js';
 import { calculateProfitRate, retryUntilSuccess } from './lib/utils.js';
-import InputView from './views/InputView.js';
-import OutputView from './views/OutputView.js';
+import { InputView, OutputView } from './views/index.js';
 
 export default class App {
   async run() {
@@ -14,7 +12,6 @@ export default class App {
     OutputView.printPurchasedLottos(purchasedLottos);
 
     const winNumbers = await this.#retryReadUntilSuccess(InputView.readWinNumbers);
-
     const bonusNumber = await this.#retryReadUntilSuccess(() => InputView.readBonusNumber(winNumbers));
 
     const lottoCompany = new LottoCompany(winNumbers, bonusNumber);
