@@ -11,8 +11,8 @@ export default class Lotto {
     return getIntersectCount(this.#numbers, winNumbers);
   }
 
-  includes(bonusNumber) {
-    return this.#numbers.includes(bonusNumber);
+  includes(number) {
+    return this.#numbers.includes(number);
   }
 
   get numbers() {
