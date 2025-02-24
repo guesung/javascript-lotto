@@ -66,6 +66,7 @@ const handleSubmit = (e) => {
     const profitRate = calculateProfitRate(totalPrize, purchaseAmount);
 
     const winningStaticsModal = document.createElement('div');
+    winningStaticsModal.className = 'modal';
     winningStaticsModal.innerHTML = `
       <h2>🏆 당첨 통계 🏆</h2>
       <table>
@@ -74,23 +75,43 @@ const handleSubmit = (e) => {
           <td>당첨금</td>
           <td>당첨 갯수</td>
         </tr>
-        ${[...Object.keys(LOTTO_RANK_INFO)].reverse().map((lottoRank) => {
-          const lottoRankInfo = LOTTO_RANK_INFO[lottoRank];
-          const rankCount = calculateMatchCount(lottoRanks, lottoRank);
+        ${[...Object.keys(LOTTO_RANK_INFO)]
+          .reverse()
+          .map((lottoRank) => {
+            const lottoRankInfo = LOTTO_RANK_INFO[lottoRank];
+            const rankCount = calculateMatchCount(lottoRanks, lottoRank);
 
-          return `
+            return `
             <tr>
               <td>${lottoRankInfo.winNumber}개</td>
               <td>${lottoRankInfo.prize.toLocaleString()}</td>
               <td>${rankCount}개</td>
             </tr>
           `;
-        })}
+          })
+          .join('')}
       </table>
       <p>당신의 총 수익률은 ${profitRate}%입니다.</p>
-      <button>다시 시작하기</button>
+      <button id="retry">다시 시작하기</button>
     `;
     container.appendChild(winningStaticsModal);
+    const modalOverlay = document.createElement('div');
+    modalOverlay.className = 'modal-overlay';
+
+    container.appendChild(modalOverlay);
+
+    const retryButton = document.getElementById('retry');
+
+    retryButton.addEventListener('click', () => {
+      const inputs = document.querySelectorAll('input');
+      inputs.forEach((input) => {
+        {
+          input.value = '';
+        }
+      });
+      container.removeChild(winningStaticsModal);
+      container.removeChild(modalOverlay);
+    });
   };
 
   document.getElementById('result').addEventListener('submit', handleResultButtonClick);
