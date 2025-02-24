@@ -1,13 +1,10 @@
-import LottoCompany from './domain/LottoCompany.js';
-import LottoShop from './domain/LottoShop.js';
+import { LottoCompany, LottoShop } from './domain/index.js';
 import { LOTTO_RANK_INFO } from './lib/constants.js';
 import { calculateMatchCount, calculateProfitRate } from './lib/utils.js';
 
-const container = document.getElementById('container');
-
 let purchasedLottos;
 
-const handleSubmit = (e) => {
+const handlePurchaseSubmit = (e) => {
   e.preventDefault();
   if (purchasedLottos) return;
 
@@ -50,6 +47,7 @@ const handleSubmit = (e) => {
     </form>
   `;
 
+  const container = document.getElementById('container');
   container.appendChild(lottoInfoContainer);
 
   const handleResultButtonClick = (event) => {
@@ -117,4 +115,4 @@ const handleSubmit = (e) => {
   document.getElementById('result').addEventListener('submit', handleResultButtonClick);
 };
 
-document.querySelector('form').addEventListener('submit', handleSubmit);
+document.getElementById('purchase').addEventListener('submit', handlePurchaseSubmit);
