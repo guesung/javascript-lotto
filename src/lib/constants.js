@@ -1,7 +1,7 @@
 export const MIN_LOTTO_NUMBER = 1;
 export const MAX_LOTTO_NUMBER = 45;
 export const LOTTO_LENGTH = 6;
-export const BONUS_NUMBER_COUNT = 6;
+export const BONUS_NUMBER_COUNT = 1;
 export const LOTTO_PRICE = 1_000;
 export const SEPERATOR = ',';
 export const NO_WINNING = '당첨 없음';

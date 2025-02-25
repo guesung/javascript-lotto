@@ -1,6 +1,6 @@
 import { CLASS_NAME_MAP, ID_MAP } from '../dom/constants.js';
 import { appendContainer, createDivElement } from '../dom/utils.js';
-import { LOTTO_RANK_INFO } from '../lib/constants.js';
+import { BONUS_NUMBER_COUNT, LOTTO_LENGTH, LOTTO_RANK_INFO, SEPERATOR } from '../lib/constants.js';
 import { calculateMatchCount } from '../lib/utils.js';
 
 export default class WebOutputView {
@@ -15,7 +15,7 @@ export default class WebOutputView {
         ${purchasedLottos
           .map(
             (purchasedLotto) =>
-              `<li class="${CLASS_NAME_MAP.ticket}"><span>🎟️</span>${purchasedLotto.numbers.join(', ')}</li>`,
+              `<li class="${CLASS_NAME_MAP.ticket}"><span>🎟️</span>${purchasedLotto.numbers.join(SEPERATOR)}</li>`,
           )
           .join('')}
       </ul>
@@ -26,13 +26,13 @@ export default class WebOutputView {
 
   static printWinningNumberForm() {
     this.#print(`
-      <form id="result">
-        <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+      <form id="${ID_MAP.form.result}">
+        <p>지난 주 당첨번호 ${LOTTO_LENGTH}개와 보너스 번호 ${BONUS_NUMBER_COUNT}개를 입력해주세요.</p>
         <div class="${CLASS_NAME_MAP.winningBox}">
           <div class="${CLASS_NAME_MAP.winningNumberBox}">
             <label>당첨 번호</label>
             <div>
-              ${new Array(6)
+              ${new Array(LOTTO_LENGTH)
                 .fill(null)
                 .map((_, index) => `<input class="${CLASS_NAME_MAP.winningNumber}" value="${index + 1}" />`)}
             </div>
@@ -44,7 +44,7 @@ export default class WebOutputView {
             </div>
           </div>
         </div>
-        <button id="show-result">결과 확인하기</button>
+        <button id="${ID_MAP.button.showResult}">결과 확인하기</button>
       </form>
     `);
   }
@@ -65,17 +65,17 @@ export default class WebOutputView {
             const lottoRankInfo = LOTTO_RANK_INFO[rank];
             const rankCount = calculateMatchCount(lottoRanks, rank);
             return `
-        <tr>
-          <td>${lottoRankInfo.winNumber}개</td>
-          <td>${lottoRankInfo.prize.toLocaleString()}</td>
-          <td>${rankCount}개</td>
-        </tr>
-      `;
+              <tr>
+                <td>${lottoRankInfo.winNumber}개</td>
+                <td>${lottoRankInfo.prize.toLocaleString()}</td>
+                <td>${rankCount}개</td>
+              </tr>
+            `;
           })
           .join('')}
       </table>
       <p>당신의 총 수익률은 ${profitRate}%입니다.</p>
-      <button id=${ID_MAP.button.retry}>다시 시작하기</button>
+      <button id="${ID_MAP.button.retry}">다시 시작하기</button>
     `,
       { class: CLASS_NAME_MAP.modal },
     );
