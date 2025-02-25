@@ -1,7 +1,6 @@
-import { appendContainer, createDivElement } from './dom/utils.js';
+import { ID_MAP } from './dom/constants.js';
 import { LottoCompany, LottoShop } from './domain/index.js';
-import { LOTTO_RANK_INFO } from './lib/constants.js';
-import { calculateMatchCount, calculateProfitRate } from './lib/utils.js';
+import { calculateProfitRate } from './lib/utils.js';
 import { WebInputView, WebOutputView } from './views/index.js';
 
 let purchasedLottos;
@@ -32,28 +31,11 @@ const handlePurchaseSubmit = (event) => {
     const totalPrize = lottoCompany.calculateTotalProfit(lottoRanks);
     const profitRate = calculateProfitRate(totalPrize, purchaseAmount);
 
-    WebOutputView.printStatistics(lottoRanks);
-
-    const modalOverlay = createDivElement({ class: 'modal-overlay' });
-    appendContainer(modalOverlay);
-
-    const retryButton = document.getElementById('retry');
-
-    const handleRetryButtonClick = () => {
-      const inputs = document.querySelectorAll('input');
-      inputs.forEach((input) => {
-        {
-          input.value = '';
-        }
-      });
-      container.removeChild(winningStaticsModal);
-      container.removeChild(modalOverlay);
-    };
-
-    retryButton.addEventListener('click', handleRetryButtonClick);
+    WebOutputView.printStatistics(lottoRanks, profitRate);
+    WebOutputView.printRetryButton();
   };
 
-  document.getElementById('result').addEventListener('submit', handleResultButtonClick);
+  document.getElementById(ID_MAP.form.result).addEventListener('submit', handleResultButtonClick);
 };
 
-document.getElementById('purchase').addEventListener('submit', handlePurchaseSubmit);
+document.getElementById(ID_MAP.form.purchase).addEventListener('submit', handlePurchaseSubmit);
