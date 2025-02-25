@@ -2,53 +2,73 @@ import { LottoCompany, LottoShop } from './domain/index.js';
 import { LOTTO_RANK_INFO } from './lib/constants.js';
 import { calculateMatchCount, calculateProfitRate } from './lib/utils.js';
 
+const createDivElement = (attributes) => {
+  const divElement = document.createElement('div');
+
+  if (attributes?.className) divElement.setAttribute('class', attributes.className);
+  if (attributes?.id) divElement.setAttribute('id', attributes.id);
+
+  return divElement;
+};
+const appendContainer = (element) => {
+  const container = document.getElementById('container');
+  container.appendChild(element);
+};
+
 let purchasedLottos;
 
-const handlePurchaseSubmit = (e) => {
-  e.preventDefault();
-  if (purchasedLottos) return;
-
+const renderLottoPurchase = () => {
   const purchaseAmount = document.querySelector('input')?.value;
 
   const purchaseCount = LottoShop.calculateLottoCount(purchaseAmount);
   purchasedLottos = LottoShop.createLotto(purchaseCount);
 
-  const lottoInfoContainer = document.createElement('div');
-  lottoInfoContainer.className = 'lotto-info-container';
+  const lottoInfoContainer = createDivElement({ className: 'lotto-info-container' });
+  appendContainer(lottoInfoContainer);
+
   lottoInfoContainer.innerHTML = `
-    <section class='lotto-info'>
-      <p>총 ${purchaseCount}개를 구매하였습니다.</p>
-      <ul>
-        ${purchasedLottos.map((purchasedLotto) => `<li>${purchasedLotto.numbers.join(', ')}</li>`).join('')}
-      </ul>
-    </section>
-    <form id="result">
-      <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
-      <div>
-        <div class="winning-number-box">
-          <label>당첨 번호</label>
-          <div>
-            <input class='winning-number' value='1' />
-            <input class='winning-number' value='2' />
-            <input class='winning-number' value='3' />
-            <input class='winning-number' value='4' />
-            <input class='winning-number' value='5' />
-            <input class='winning-number' value='6' />
-          </div>
-        </div>
-        <div class="bonus-number-box">
-          <label>보너스 번호</label>
-          <div>
-            <input class='bonus-number' value='7' />
-          </div>
+  <section class='lotto-info'>
+    <p>총 ${purchaseCount}개를 구매하였습니다.</p>
+    <ul>
+      ${purchasedLottos
+        .map((purchasedLotto) => `<li class="ticket"><span>🎟️</span>${purchasedLotto.numbers.join(', ')}</li>`)
+        .join('')}
+    </ul>
+  </section>
+  <form id="result">
+    <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
+    <div class="winning-box">
+      <div class="winning-number-box">
+        <label>당첨 번호</label>
+        <div>
+          <input class="winning-number" value="1" />
+          <input class="winning-number" value="2" />
+          <input class="winning-number" value="3" />
+          <input class="winning-number" value="4" />
+          <input class="winning-number" value="5" />
+          <input class="winning-number" value="6" />
         </div>
       </div>
-      <button id='show-result'>결과 확인하기</button>
-    </form>
-  `;
+      <div class="bonus-number-box">
+        <label>보너스 번호</label>
+        <div>
+          <input class="bonus-number" value="7" />
+        </div>
+      </div>
+    </div>
+    <button id="show-result">결과 확인하기</button>
+  </form>
+`;
+};
 
-  const container = document.getElementById('container');
-  container.appendChild(lottoInfoContainer);
+const handlePurchaseSubmit = (event) => {
+  event.preventDefault();
+
+  if (purchasedLottos) return;
+
+  renderLottoPurchase();
+
+  // ..
 
   const handleResultButtonClick = (event) => {
     event.preventDefault();
@@ -63,8 +83,7 @@ const handlePurchaseSubmit = (e) => {
     const totalPrize = lottoCompany.calculateTotalProfit(lottoRanks);
     const profitRate = calculateProfitRate(totalPrize, purchaseAmount);
 
-    const winningStaticsModal = document.createElement('div');
-    winningStaticsModal.className = 'modal';
+    const winningStaticsModal = createDivElement({ className: 'modal' });
     winningStaticsModal.innerHTML = `
       <h2>🏆 당첨 통계 🏆</h2>
       <table>
@@ -75,32 +94,30 @@ const handlePurchaseSubmit = (e) => {
         </tr>
         ${[...Object.keys(LOTTO_RANK_INFO)]
           .reverse()
-          .map((lottoRank) => {
-            const lottoRankInfo = LOTTO_RANK_INFO[lottoRank];
-            const rankCount = calculateMatchCount(lottoRanks, lottoRank);
-
+          .map((rank) => {
+            const lottoRankInfo = LOTTO_RANK_INFO[rank];
+            const rankCount = calculateMatchCount(lottoRanks, rank);
             return `
-            <tr>
-              <td>${lottoRankInfo.winNumber}개</td>
-              <td>${lottoRankInfo.prize.toLocaleString()}</td>
-              <td>${rankCount}개</td>
-            </tr>
-          `;
+        <tr>
+          <td>${lottoRankInfo.winNumber}개</td>
+          <td>${lottoRankInfo.prize.toLocaleString()}</td>
+          <td>${rankCount}개</td>
+        </tr>
+      `;
           })
           .join('')}
       </table>
       <p>당신의 총 수익률은 ${profitRate}%입니다.</p>
       <button id="retry">다시 시작하기</button>
     `;
-    container.appendChild(winningStaticsModal);
-    const modalOverlay = document.createElement('div');
-    modalOverlay.className = 'modal-overlay';
 
-    container.appendChild(modalOverlay);
+    appendContainer(winningStaticsModal);
+    const modalOverlay = createDivElement({ className: 'modal-overlay' });
+    appendContainer(modalOverlay);
 
     const retryButton = document.getElementById('retry');
 
-    retryButton.addEventListener('click', () => {
+    const handleRetryButtonClick = () => {
       const inputs = document.querySelectorAll('input');
       inputs.forEach((input) => {
         {
@@ -109,7 +126,9 @@ const handlePurchaseSubmit = (e) => {
       });
       container.removeChild(winningStaticsModal);
       container.removeChild(modalOverlay);
-    });
+    };
+
+    retryButton.addEventListener('click', handleRetryButtonClick);
   };
 
   document.getElementById('result').addEventListener('submit', handleResultButtonClick);
