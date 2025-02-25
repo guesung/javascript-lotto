@@ -1,10 +1,11 @@
 export const createDivElement = (attributes) => {
   const divElement = document.createElement('div');
 
-  Object.entries(attributes).forEach(([attributeKey, attributeValue]) => {
-    console.log(attributeKey, attributeValue);
-    divElement.setAttribute(attributeKey, attributeValue);
-  });
+  if (attributes)
+    Object.entries(attributes).forEach(([attributeKey, attributeValue]) => {
+      console.log(attributeKey, attributeValue);
+      divElement.setAttribute(attributeKey, attributeValue);
+    });
 
   return divElement;
 };
