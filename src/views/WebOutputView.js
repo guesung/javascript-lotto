@@ -21,9 +21,9 @@ export default class WebOutputView {
     this.#print(`
         <h2 class="lotto-title">🎱내 번호 당첨 번호 확인🎱</h2>
         <form id="${ID_MAP.form.purchase}">
-          <label>구입할 금액을 입력해주세요.</label>
+          <label for="purchase-amount">구입할 금액을 입력해주세요.</label>
           <div>
-            <input type="text" placeholder="금액" value="5000" class="${CLASS_NAME_MAP.price}" />
+            <input type="text" placeholder="금액" value="5000" class="${CLASS_NAME_MAP.price}" id="purchase-amount" />
             <button>구입</button>
           </div>
         </form>
@@ -41,7 +41,9 @@ export default class WebOutputView {
         ${purchasedLottos
           .map(
             (purchasedLotto) =>
-              `<li class="${CLASS_NAME_MAP.ticket}"><span>🎟️</span>${purchasedLotto.numbers.join(SEPERATOR)}</li>`,
+              `<li class="${CLASS_NAME_MAP.ticket}"><span>🎟️</span>${purchasedLotto.numbers.join(
+                `${SEPERATOR} `,
+              )}</li>`,
           )
           .join('')}
       </ul>
@@ -60,7 +62,8 @@ export default class WebOutputView {
             <div>
               ${new Array(LOTTO_LENGTH)
                 .fill(null)
-                .map((_, index) => `<input class="${CLASS_NAME_MAP.winningNumber}" value="${index + 1}" />`)}
+                .map((_, index) => `<input class="${CLASS_NAME_MAP.winningNumber}" value="${index + 1}" />`)
+                .join('')}
             </div>
           </div>
           <div class="${CLASS_NAME_MAP.bonusNumberBox}">
@@ -78,7 +81,7 @@ export default class WebOutputView {
   static printStatistics(lottoRanks, profitRate) {
     this.#print(
       `
-      <h2>🏆 당첨 통계 🏆</h2>
+      <h2 class="lotto-subtitle">🏆 당첨 통계 🏆</h2>
       <table>
         <tr>
           <td>일치 갯수</td>
@@ -100,7 +103,7 @@ export default class WebOutputView {
           })
           .join('')}
       </table>
-      <p>당신의 총 수익률은 ${profitRate}%입니다.</p>
+      <p class="profile-rate">당신의 총 수익률은 ${profitRate}%입니다.</p>
       <button id="${ID_MAP.button.retry}">다시 시작하기</button>
     `,
       { class: CLASS_NAME_MAP.modal },
