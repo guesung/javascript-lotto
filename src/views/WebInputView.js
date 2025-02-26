@@ -1,6 +1,11 @@
+import { ID_MAP } from '../dom/constants.js';
+
 export default class WebInputView {
   static readPurchaseAmount() {
-    return document.querySelector('.price')?.value;
+    const purchaseAmountForm = document.getElementById(ID_MAP.form.purchase);
+    const purchaseAmountInput = purchaseAmountForm?.querySelector('input');
+
+    return purchaseAmountInput?.value;
   }
 
   static readWinNumbers() {

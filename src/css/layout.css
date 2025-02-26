@@ -1,5 +1,5 @@
+@charset "UTF-8";
 /* Wrapper */
-
 #app {
   display: flex;
   justify-content: center;
@@ -17,25 +17,21 @@
 }
 
 /* 로또 구매 */
-
-#purchase {
+#container__purchase form {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
-
-/* 로또 구매 결과 */
-
-button#show-result {
-  width: 100%;
-}
-
-#purchase > div {
+#container__purchase form > div {
   display: flex;
   gap: 16px;
 }
+#container__purchase form > div > input {
+  width: 100%;
+}
 
-#purchase > div > input {
+/* 로또 구매 결과 */
+#container__winning-numbers button {
   width: 100%;
 }
 
@@ -43,7 +39,6 @@ button#show-result {
   padding-top: 12px;
   padding-bottom: 12px;
 }
-
 .lotto-info-container > ul {
   display: flex;
   flex-direction: column;
@@ -57,6 +52,10 @@ button#show-result {
   height: 36px;
   text-align: center;
 }
+#result > div {
+  display: flex;
+  justify-content: space-between;
+}
 
 .winning-number-box div {
   display: flex;
@@ -67,17 +66,11 @@ button#show-result {
   margin-bottom: 20px;
 }
 
-#result > div {
-  display: flex;
-  justify-content: space-between;
-}
-
 .ticket {
   display: flex;
   align-items: center;
   gap: 4px;
 }
-
 .ticket > span {
   font-size: 34px;
 }
@@ -87,7 +80,6 @@ button#show-result {
 }
 
 /* 당첨 통계 */
-
 .profile-rate {
   font-weight: 700;
   padding-top: 32px;
@@ -97,19 +89,14 @@ button#show-result {
 .modal {
   position: fixed;
   top: 50%;
-
   width: 400px;
   padding: 40px;
   text-align: center;
-
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
   box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
-
   transform: translateY(-50%);
-
   z-index: 100;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -125,4 +112,4 @@ button#show-result {
   bottom: 0;
   width: 100vw;
   height: 100vh;
-}
+}/*# sourceMappingURL=layout.css.map */
