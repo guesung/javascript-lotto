@@ -12,7 +12,6 @@ export default class App {
     let purchasedLottos;
     function handlePurchaseSubmit(event) {
       event.preventDefault();
-
       if (purchasedLottos) return;
 
       const purchaseAmount = InputView.readPurchaseAmount();

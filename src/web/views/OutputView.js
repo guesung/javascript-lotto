@@ -6,8 +6,7 @@ import { appendContainer, createDivElement } from '../utils.js';
 export default class OutputView {
   static printContainer() {
     this.#print(
-      `
-        <header class="purchase__title">🎱 행운의 로또</header>
+      `<header class="purchase__title">🎱 행운의 로또</header>
         <div id="container" class="lotto-body"></div>
         <footer class="lotto-primary">Copyright 2023. woowacourse</footer>
       `,
@@ -17,8 +16,8 @@ export default class OutputView {
   }
 
   static printPurchaseCountInput() {
-    this.#print(`
-      <div class="purchase">
+    this.#print(
+      `<div class="purchase">
         <h2 class="purchase__title">🎱내 번호 당첨 번호 확인🎱</h2>
         <form class="purchase__form">
           <label for="purchase__amount">구입할 금액을 입력해주세요.</label>
@@ -28,13 +27,13 @@ export default class OutputView {
           </div>
         </form>
       </div>
-      `);
+      `,
+    );
   }
 
   static printPurchasedLottos(purchasedLottos) {
     this.#print(
-      `
-      <div class="purchased">
+      `<div class="purchased">
         <p>총 ${purchasedLottos.length}개를 구매하였습니다.</p>
         <ul class="purchased__list">
           ${purchasedLottos
@@ -52,8 +51,8 @@ export default class OutputView {
   }
 
   static printWinningNumberForm() {
-    this.#print(`
-      <div class="winning">
+    this.#print(
+      `<div class="winning">
         <form class="winning__form">
           <p>지난 주 당첨번호 ${LOTTO_LENGTH}개와 보너스 번호 ${BONUS_NUMBER_COUNT}개를 입력해주세요.</p>
           <div class="winning__box">
@@ -74,13 +73,13 @@ export default class OutputView {
           <button class="winning__button-submit">결과 확인하기</button>
         </form>
       </div>
-    `);
+    `,
+    );
   }
 
   static printStatistics(lottoRanks, profitRate) {
     this.#print(
-      `
-      <div class="result">
+      `<div class="result">
         <div class="result__close">X</div>
         <h2 class="lotto-subtitle result__title">🏆 당첨 통계 🏆</h2>
         <table>
@@ -89,20 +88,7 @@ export default class OutputView {
             <th>당첨금</th>
             <th>당첨 갯수</th>
           </tr>
-          ${[...Object.keys(LOTTO_RANK_INFO)]
-            .reverse()
-            .map((rank) => {
-              const lottoRankInfo = LOTTO_RANK_INFO[rank];
-              const rankCount = calculateMatchCount(lottoRanks, rank);
-              return `
-                <tr>
-                  <td>${lottoRankInfo.winNumber}개</td>
-                  <td>${lottoRankInfo.prize.toLocaleString()}</td>
-                  <td>${rankCount}개</td>
-                </tr>
-              `;
-            })
-            .join('')}
+          ${OutputView.#printLottoRanks(lottoRanks)}
         </table>
         <p class="result__profile-rate">당신의 총 수익률은 ${profitRate}%입니다.</p>
         <button class="result__button--retry">다시 시작하기</button>
@@ -112,40 +98,52 @@ export default class OutputView {
     );
 
     const resultCloseButton = document.querySelector('.result__close');
-    resultCloseButton.addEventListener('click', handleResultCloseButton);
-
-    function handleResultCloseButton() {
-      OutputView.#removeModal();
-    }
+    resultCloseButton.addEventListener('click', OutputView.#removeModal);
 
     const modalOverlay = createDivElement({ class: 'overlay' });
     appendContainer(modalOverlay);
   }
 
+  static #printLottoRanks(lottoRanks) {
+    return [...Object.keys(LOTTO_RANK_INFO)]
+      .reverse()
+      .map((rank) => {
+        const lottoRankInfo = LOTTO_RANK_INFO[rank];
+        const rankCount = calculateMatchCount(lottoRanks, rank);
+        return `
+                <tr>
+                  <td>${lottoRankInfo.winNumber}개</td>
+                  <td>${lottoRankInfo.prize.toLocaleString()}</td>
+                  <td>${rankCount}개</td>
+                </tr>
+              `;
+      })
+      .join('');
+  }
+
   static printRetryButton() {
     const retryButton = document.querySelector('.result__button--retry');
+    retryButton.addEventListener('click', handleRetryButton);
 
-    const handleRetryButton = () => {
+    function handleRetryButton() {
       document.querySelectorAll('input').forEach((input) => {
         input.value = '';
       });
       OutputView.#removeModal();
-
-      this.#resetContainer();
+      OutputView.#resetContainer();
 
       const app = new App();
       app.init();
-    };
-    retryButton.addEventListener('click', handleRetryButton);
+    }
   }
 
   static #removeModal() {
     const container = document.getElementById('container');
 
-    const modal = container.querySelector(`.${'modal'}`);
+    const modal = container.querySelector('.modal');
     container.removeChild(modal);
 
-    const overlay = container.querySelector(`.${'overlay'}`);
+    const overlay = container.querySelector('.overlay');
     container.removeChild(overlay);
   }
 
