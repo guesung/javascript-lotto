@@ -1,9 +1,9 @@
-import App2 from '../web/App.js';
-import { appendContainer, createDivElement } from '../web/utils.js';
-import { BONUS_NUMBER_COUNT, LOTTO_LENGTH, LOTTO_RANK_INFO, SEPERATOR } from '../lib/constants.js';
-import { calculateMatchCount } from '../lib/utils.js';
+import { BONUS_NUMBER_COUNT, LOTTO_LENGTH, LOTTO_RANK_INFO, SEPERATOR } from '../../lib/constants.js';
+import { calculateMatchCount } from '../../lib/utils.js';
+import App from '../App.js';
+import { appendContainer, createDivElement } from '../utils.js';
 
-export default class WebOutputView {
+export default class OutputView {
   static printContainer() {
     this.#print(
       `
@@ -125,12 +125,12 @@ export default class WebOutputView {
       document.querySelectorAll('input').forEach((input) => {
         input.value = '';
       });
-      WebOutputView.#removeModal();
+      OutputView.#removeModal();
 
-      App2.reset();
+      App.reset();
 
-      const app2 = new App2();
-      app2.init();
+      const app = new App();
+      app.init();
     };
     retryButton.addEventListener('click', handleRetryButton);
   }
