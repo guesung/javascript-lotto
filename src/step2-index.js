@@ -1,4 +1,4 @@
-import App2 from './web/App.js';
+import App from './web/App.js';
 
-const app = new App2();
+const app = new App();
 app.init();
