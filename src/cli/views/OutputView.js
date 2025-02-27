@@ -1,5 +1,5 @@
-import { LOTTO_RANK_INFO } from '../lib/constants.js';
-import { calculateMatchCount } from '../lib/utils.js';
+import { LOTTO_RANK_INFO } from '../../lib/constants.js';
+import { calculateMatchCount } from '../../lib/utils.js';
 
 export default class OutputView {
   static printPurchasedLottos(purchasedLottos) {

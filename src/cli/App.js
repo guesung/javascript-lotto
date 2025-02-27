@@ -1,6 +1,6 @@
 import { LottoCompany, LottoShop } from '../domain/index.js';
 import { calculateProfitRate, retryUntilSuccess } from '../lib/utils.js';
-import { InputView, OutputView } from '../views/index.js';
+import { InputView, OutputView } from './views/index.js';
 
 export default class App {
   async run() {

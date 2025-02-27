@@ -1,9 +1,10 @@
 import App from '../src/cli/App.js';
-import { ERROR_MESSAGES, NO, YES } from '../src/lib/constants.js';
+import InputView from '../src/cli/views/InputView.js';
+import { ERROR_MESSAGES, NO, YES } from '../src/lib/constants';
 import * as utils from '../src/lib/utils.js';
 
 const mockReadLineAsync = (mockValues) => {
-  mockValues.forEach((mockValue) => jest.spyOn(utils, 'readLineAsync').mockResolvedValueOnce(mockValue));
+  mockValues.forEach((mockValue) => jest.spyOn(InputView, 'readLineAsync').mockResolvedValueOnce(mockValue));
 };
 
 const mockGenerateUniqueNumbers = (mockValues) => {
