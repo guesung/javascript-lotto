@@ -4,8 +4,8 @@ import { InputView, OutputView } from './views/index.js';
 
 export default class App {
   init() {
-    OutputView.printContainer();
-    OutputView.printPurchaseCountInput();
+    OutputView.renderContainer();
+    OutputView.renderPurchaseCountInput();
 
     document.querySelector('.purchase__form').addEventListener('submit', handlePurchaseSubmit);
 
@@ -20,8 +20,8 @@ export default class App {
       const purchaseCount = LottoShop.calculateLottoCount(purchaseAmount);
       purchasedLottos = LottoShop.createLotto(purchaseCount);
 
-      OutputView.printPurchasedLottos(purchasedLottos);
-      OutputView.printWinningNumberForm();
+      OutputView.renderPurchasedLottos(purchasedLottos);
+      OutputView.renderWinningNumberForm();
 
       document.querySelector('.winning__form').addEventListener('submit', handleResultSubmit);
 
@@ -40,8 +40,8 @@ export default class App {
         const totalPrize = lottoCompany.calculateTotalProfit(lottoRanks);
         const profitRate = calculateProfitRate(totalPrize, purchaseAmount);
 
-        OutputView.printStatistics(lottoRanks, profitRate);
-        OutputView.printRetryButton();
+        OutputView.renderStatistics(lottoRanks, profitRate);
+        OutputView.renderRetryButton();
       }
     }
   }
