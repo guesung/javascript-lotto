@@ -31,19 +31,18 @@ export default class OutputView {
       `);
   }
 
-  static printPurchaseCount(purchaseCount) {
-    this.#print(`<p>총 ${purchaseCount}개를 구매하였습니다.</p>`);
-  }
-
   static printPurchasedLottos(purchasedLottos) {
     this.#print(
       `
       <div class="purchased__container">
-        <ul>
+        <p>총 ${purchasedLottos.length}개를 구매하였습니다.</p>
+        <ul class="purchased__container-list">
           ${purchasedLottos
             .map(
               (purchasedLotto) =>
-                `<li class="ticket"><span>🎟️</span>${purchasedLotto.numbers.join(`${SEPERATOR} `)}</li>`,
+                `<li class="purchased__container-item"><span class="purchased__container-item-ticket">🎟️</span>${purchasedLotto.numbers.join(
+                  `${SEPERATOR} `,
+                )}</li>`,
             )
             .join('')}
         </ul>
@@ -83,12 +82,12 @@ export default class OutputView {
     this.#print(
       `
       <div class="result__container">
-        <h2 class="lotto-subtitle">🏆 당첨 통계 🏆</h2>
+        <h2 class="lotto-subtitle result__title">🏆 당첨 통계 🏆</h2>
         <table>
-          <tr>
-            <td>일치 갯수</td>
-            <td>당첨금</td>
-            <td>당첨 갯수</td>
+          <tr class="result__table--title">
+            <th>일치 갯수</th>
+            <th>당첨금</th>
+            <th>당첨 갯수</th>
           </tr>
           ${[...Object.keys(LOTTO_RANK_INFO)]
             .reverse()
@@ -125,7 +124,7 @@ export default class OutputView {
       });
       OutputView.#removeModal();
 
-      App.reset();
+      this.#resetContainer();
 
       const app = new App();
       app.init();
@@ -143,11 +142,16 @@ export default class OutputView {
     container.removeChild(overlay);
   }
 
-  static #print(innerHTML, atributes, containerId = 'container') {
+  static #print(innerHTML, attributes, containerId = 'container') {
     const container = document.getElementById(containerId);
-    const element = createDivElement(atributes);
+    const element = createDivElement(attributes);
     element.innerHTML = innerHTML;
 
     container.appendChild(element);
+  }
+
+  static #resetContainer() {
+    const container = document.getElementById('app');
+    container.innerHTML = '';
   }
 }
