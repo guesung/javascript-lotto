@@ -81,6 +81,7 @@ export default class OutputView {
     this.#print(
       `
       <div class="result">
+        <div class="result__close">X</div>
         <h2 class="lotto-subtitle result__title">🏆 당첨 통계 🏆</h2>
         <table>
           <tr class="result__table--title">
@@ -109,6 +110,13 @@ export default class OutputView {
     `,
       { class: 'modal' },
     );
+
+    const resultCloseButton = document.querySelector('.result__close');
+    resultCloseButton.addEventListener('click', handleResultCloseButton);
+
+    function handleResultCloseButton() {
+      OutputView.#removeModal();
+    }
 
     const modalOverlay = createDivElement({ class: 'overlay' });
     appendContainer(modalOverlay);
