@@ -23,7 +23,7 @@ export default class OutputView {
         <form class="purchase__form">
           <label for="purchase__amount">구입할 금액을 입력해주세요.</label>
           <div>
-            <input type="text" placeholder="금액" value="5000" id="purchase__amount" />
+            <input type="text" placeholder="금액" value="5000" id="purchase__amount" class="purchase__input--amount"  />
             <button>구입</button>
           </div>
         </form>

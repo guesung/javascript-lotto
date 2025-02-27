@@ -16,6 +16,7 @@ export default class App {
       if (purchasedLottos) return;
 
       const purchaseAmount = InputView.readPurchaseAmount();
+      if (!purchaseAmount) return;
 
       const purchaseCount = LottoShop.calculateLottoCount(purchaseAmount);
       purchasedLottos = LottoShop.createLotto(purchaseCount);
@@ -29,7 +30,10 @@ export default class App {
         event.preventDefault();
 
         const winningNumbers = InputView.readWinNumbers();
-        const bonusNumber = InputView.readBonusNumber();
+        if (!winningNumbers) return;
+
+        const bonusNumber = InputView.readBonusNumber(winningNumbers);
+        if (!bonusNumber) return;
 
         const lottoCompany = new LottoCompany(winningNumbers, bonusNumber);
         const lottoRanks = lottoCompany.calculateLottoRanks(purchasedLottos);
@@ -41,10 +45,5 @@ export default class App {
         OutputView.printRetryButton();
       }
     }
-  }
-
-  static reset() {
-    const app = document.getElementById('app');
-    app.innerHTML = '';
   }
 }
