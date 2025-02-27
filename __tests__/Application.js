@@ -1,4 +1,4 @@
-import App from '../src/App.js';
+import App from '../src/cli/App.js';
 import { ERROR_MESSAGES, NO, YES } from '../src/lib/constants.js';
 import * as utils from '../src/lib/utils.js';
 
