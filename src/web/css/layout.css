@@ -45,24 +45,24 @@
   gap: 12px;
 }
 
-#result input {
+.winning__container .winning__form input {
   border: 1px solid #b4b4b4;
   border-radius: 4px;
   width: 34px;
   height: 36px;
   text-align: center;
 }
-#result > div {
+.winning__container .winning__form > div {
   display: flex;
   justify-content: space-between;
 }
 
-.winning-number-box div {
+.winning__box-numbers div {
   display: flex;
   gap: 8px;
 }
 
-.winning-box {
+.winning__box {
   margin-bottom: 20px;
 }
 
@@ -75,12 +75,12 @@
   font-size: 34px;
 }
 
-.bonus-number-box {
+.winning__box-bonus-number {
   text-align: end;
 }
 
 /* 당첨 통계 */
-.profile-rate {
+.result__profile-rate {
   font-weight: 700;
   padding-top: 32px;
   padding-bottom: 32px;
@@ -112,4 +112,4 @@
   bottom: 0;
   width: 100vw;
   height: 100vh;
-}/*# sourceMappingURL=layout.css.map */
+} /*# sourceMappingURL=layout.css.map */

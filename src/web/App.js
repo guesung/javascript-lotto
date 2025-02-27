@@ -7,7 +7,7 @@ export default class App {
     OutputView.printContainer();
     OutputView.printPurchaseCountInput();
 
-    document.getElementById('purchase').addEventListener('submit', handlePurchaseSubmit);
+    document.querySelector('.purchase__form').addEventListener('submit', handlePurchaseSubmit);
 
     let purchasedLottos;
     function handlePurchaseSubmit(event) {
@@ -24,7 +24,7 @@ export default class App {
       OutputView.printPurchasedLottos(purchasedLottos);
       OutputView.printWinningNumberForm();
 
-      document.getElementById('result').addEventListener('submit', handleResultSubmit);
+      document.querySelector('.winning__form').addEventListener('submit', handleResultSubmit);
 
       function handleResultSubmit(event) {
         event.preventDefault();

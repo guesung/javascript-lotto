@@ -7,7 +7,7 @@ export default class OutputView {
   static printContainer() {
     this.#print(
       `
-        <header class="lotto-title">🎱 행운의 로또</header>
+        <header class="purchase__title">🎱 행운의 로또</header>
         <div id="container" class="lotto-body"></div>
         <footer class="lotto-primary">Copyright 2023. woowacourse</footer>
       `,
@@ -18,12 +18,12 @@ export default class OutputView {
 
   static printPurchaseCountInput() {
     this.#print(`
-      <div id="container__purchase">
-        <h2 class="lotto-title">🎱내 번호 당첨 번호 확인🎱</h2>
-        <form id="purchase">
-          <label for="purchase-amount">구입할 금액을 입력해주세요.</label>
+      <div class="purchase__container">
+        <h2 class="purchase__title">🎱내 번호 당첨 번호 확인🎱</h2>
+        <form class="purchase__form">
+          <label for="purchase__amount">구입할 금액을 입력해주세요.</label>
           <div>
-            <input type="text" placeholder="금액" value="5000" id="purchase-amount" />
+            <input type="text" placeholder="금액" value="5000" id="purchase__amount" />
             <button>구입</button>
           </div>
         </form>
@@ -38,7 +38,7 @@ export default class OutputView {
   static printPurchasedLottos(purchasedLottos) {
     this.#print(
       `
-      <div id="container__purchased-lottos">
+      <div class="purchased__container">
         <ul>
           ${purchasedLottos
             .map(
@@ -55,27 +55,25 @@ export default class OutputView {
 
   static printWinningNumberForm() {
     this.#print(`
-      <div id="container__winning-numbers">
-        <form id="result">
+      <div class="winning__container">
+        <form class="winning__form">
           <p>지난 주 당첨번호 ${LOTTO_LENGTH}개와 보너스 번호 ${BONUS_NUMBER_COUNT}개를 입력해주세요.</p>
-          <div class="winning-box">
-            <div class="winning-number-box">
+          <div class="winning__box">
+            <div class="winning__box-numbers">
               <label>당첨 번호</label>
               <div>
                 ${new Array(LOTTO_LENGTH)
                   .fill(null)
-                  .map((_, index) => `<input class="winning-number" value="${index + 1}" />`)
+                  .map((_, index) => `<input class="winning__input--number" value="${index + 1}" />`)
                   .join('')}
               </div>
             </div>
-            <div class="bonus-number-box">
+            <div class="winning__box-bonus-number">
               <label>보너스 번호</label>
-              <div>
-                <input class="bonus-number" value="7" />
-              </div>
+              <input class="winning__input--bonus-number" value="7" />
             </div>
           </div>
-          <button id="show-result">결과 확인하기</button>
+          <button class="winning__button-submit">결과 확인하기</button>
         </form>
       </div>
     `);
@@ -84,7 +82,7 @@ export default class OutputView {
   static printStatistics(lottoRanks, profitRate) {
     this.#print(
       `
-      <div id="container__winning-statics">
+      <div class="result__container">
         <h2 class="lotto-subtitle">🏆 당첨 통계 🏆</h2>
         <table>
           <tr>
@@ -107,8 +105,8 @@ export default class OutputView {
             })
             .join('')}
         </table>
-        <p class="profile-rate">당신의 총 수익률은 ${profitRate}%입니다.</p>
-        <button id="retry">다시 시작하기</button>
+        <p class="result__profile-rate">당신의 총 수익률은 ${profitRate}%입니다.</p>
+        <button class="result__button--retry">다시 시작하기</button>
       </div>
     `,
       { class: 'modal' },
@@ -119,7 +117,7 @@ export default class OutputView {
   }
 
   static printRetryButton() {
-    const retryButton = document.getElementById('retry');
+    const retryButton = document.querySelector('.result__button--retry');
 
     const handleRetryButton = () => {
       document.querySelectorAll('input').forEach((input) => {
