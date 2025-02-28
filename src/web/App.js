@@ -24,8 +24,7 @@ export default class App {
     const purchaseAmount = InputView.readPurchaseAmount();
     if (!purchaseAmount) return;
 
-    const purchaseCount = LottoShop.calculateLottoCount(purchaseAmount);
-    this.#purchasedLottos = LottoShop.createLotto(purchaseCount);
+    this.#purchasedLottos = LottoShop.createLotto(purchaseAmount);
 
     OutputView.renderPurchasedLottos(this.#purchasedLottos);
     OutputView.renderWinningNumberForm();

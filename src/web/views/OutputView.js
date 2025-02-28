@@ -111,12 +111,12 @@ export default class OutputView {
         const lottoRankInfo = LOTTO_RANK_INFO[rank];
         const rankCount = calculateMatchCount(lottoRanks, rank);
         return `
-                <tr>
-                  <td>${lottoRankInfo.winNumber}개</td>
-                  <td>${lottoRankInfo.prize.toLocaleString()}</td>
-                  <td>${rankCount}개</td>
-                </tr>
-              `;
+          <tr>
+            <td>${lottoRankInfo.winNumber}개</td>
+            <td>${lottoRankInfo.prize.toLocaleString()}</td>
+            <td>${rankCount}개</td>
+          </tr>
+        `;
       })
       .join('');
   }
