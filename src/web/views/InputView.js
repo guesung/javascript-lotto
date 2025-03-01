@@ -16,7 +16,7 @@ export default class InputView {
 
   static readWinNumbers() {
     try {
-      const winningNumberInputs = document.querySelectorAll('.winning__input--number');
+      const winningNumberInputs = document.querySelectorAll('.winning__input--lotto-number');
       const winningNumbers = [...winningNumberInputs].map((winningNumberInput) => Number(winningNumberInput.value));
 
       Validator.validateWinNumbers(winningNumbers);

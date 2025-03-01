@@ -18,7 +18,7 @@ export default class OutputView {
 
   static printPurchaseCountInput() {
     this.#print(`
-      <div class="purchase__container">
+      <div class="purchase">
         <h2 class="purchase__title">🎱내 번호 당첨 번호 확인🎱</h2>
         <form class="purchase__form">
           <label for="purchase__amount">구입할 금액을 입력해주세요.</label>
@@ -34,13 +34,13 @@ export default class OutputView {
   static printPurchasedLottos(purchasedLottos) {
     this.#print(
       `
-      <div class="purchased__container">
+      <div class="purchased">
         <p>총 ${purchasedLottos.length}개를 구매하였습니다.</p>
-        <ul class="purchased__container-list">
+        <ul class="purchased__list">
           ${purchasedLottos
             .map(
               (purchasedLotto) =>
-                `<li class="purchased__container-item"><span class="purchased__container-item-ticket">🎟️</span>${purchasedLotto.numbers.join(
+                `<li class="purchased__item"><span class="purchased__ticket">🎟️</span>${purchasedLotto.numbers.join(
                   `${SEPERATOR} `,
                 )}</li>`,
             )
@@ -48,13 +48,12 @@ export default class OutputView {
         </ul>
       </div>
     `,
-      { class: 'lotto-info-container' },
     );
   }
 
   static printWinningNumberForm() {
     this.#print(`
-      <div class="winning__container">
+      <div class="winning">
         <form class="winning__form">
           <p>지난 주 당첨번호 ${LOTTO_LENGTH}개와 보너스 번호 ${BONUS_NUMBER_COUNT}개를 입력해주세요.</p>
           <div class="winning__box">
@@ -63,7 +62,7 @@ export default class OutputView {
               <div>
                 ${new Array(LOTTO_LENGTH)
                   .fill(null)
-                  .map((_, index) => `<input class="winning__input--number" value="${index + 1}" />`)
+                  .map((_, index) => `<input class="winning__input--lotto-number" value="${index + 1}" />`)
                   .join('')}
               </div>
             </div>
@@ -81,7 +80,7 @@ export default class OutputView {
   static printStatistics(lottoRanks, profitRate) {
     this.#print(
       `
-      <div class="result__container">
+      <div class="result">
         <h2 class="lotto-subtitle result__title">🏆 당첨 통계 🏆</h2>
         <table>
           <tr class="result__table--title">

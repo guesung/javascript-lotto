@@ -17,81 +17,81 @@
   padding-bottom: 32px;
 }
 
-.purchase__container {
+.purchase {
   display: flex;
   flex-direction: column;
   gap: 28px;
 }
-.purchase__container form {
+.purchase form {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
-.purchase__container form > div {
+.purchase form > div {
   display: flex;
   gap: 16px;
 }
-.purchase__container form > div > input {
+.purchase form > div > input {
   width: 100%;
 }
 
-.purchased__container {
+.purchased {
   padding-top: 12px;
   padding-bottom: 12px;
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
-.purchased__container .purchased__container-list {
+.purchased .purchased__list {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
-.purchased__container .purchased__container-item {
+.purchased .purchased__item {
   display: flex;
   align-items: center;
   gap: 4px;
 }
-.purchased__container .purchased__container-item .purchased__container-item-ticket {
+.purchased .purchased__item .purchased__ticket {
   font-size: 34px;
 }
 
-.winning__container .winning__form input {
+.winning .winning__form input {
   border: 1px solid #b4b4b4;
   border-radius: 4px;
   width: 34px;
   height: 36px;
   text-align: center;
 }
-.winning__container .winning__form .winning__box {
+.winning .winning__form .winning__box {
   display: flex;
   justify-content: space-between;
 }
-.winning__container .winning__form .winning__box .winning__input--number {
+.winning .winning__form .winning__box .winning__input--lotto-number {
   margin-right: 8px;
 }
-.winning__container .winning__form .winning__box .winning__input--bonus-number {
+.winning .winning__form .winning__box .winning__input--bonus-number {
   left: 0;
 }
-.winning__container .winning__form .winning__box .winning__box-bonus-number {
+.winning .winning__form .winning__box .winning__box-bonus-number {
   display: flex;
   flex-direction: column;
   align-items: end;
 }
-.winning__container .winning__form button {
+.winning .winning__form button {
   width: 100%;
   margin-top: 24px;
 }
 
 /* 당첨 통계 */
-.result__container {
+.result {
   display: flex;
   flex-direction: column;
 }
-.result__container .result__title {
+.result .result__title {
   margin-bottom: 24px;
 }
-.result__container .result__profile-rate {
+.result .result__profile-rate {
   font-weight: 700;
   padding-top: 32px;
   padding-bottom: 32px;
