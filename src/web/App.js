@@ -14,20 +14,15 @@ export default class App {
       formSubmitEvent.preventDefault();
 
       try {
-        if (formSubmitEvent.target.classList.contains('purchase__form')) {
-          this.#handlePurchaseSubmit.call(this);
-        }
-
-        if (formSubmitEvent.target.classList.contains('winning__form')) {
-          this.#handleResultSubmit.call(this);
-        }
+        if (formSubmitEvent.target.classList.contains('purchase__form')) this.#handlePurchaseFormSubmit.call(this);
+        if (formSubmitEvent.target.classList.contains('winning__form')) this.#handleWinningFormSubmit.call(this);
       } catch (error) {
         window.alert(error.message);
       }
     });
   }
 
-  #handlePurchaseSubmit() {
+  #handlePurchaseFormSubmit() {
     const purchaseAmount = InputView.readPurchaseAmount();
     if (!purchaseAmount) return;
 
@@ -39,7 +34,7 @@ export default class App {
     OutputView.renderWinningNumberForm();
   }
 
-  #handleResultSubmit() {
+  #handleWinningFormSubmit() {
     const winningNumbers = InputView.readWinNumbers();
     if (!winningNumbers) return;
 
