@@ -156,7 +156,6 @@ export default class OutputView {
       document.querySelectorAll('input').forEach((input) => {
         input.value = '';
       });
-      OutputView.#removeModal();
       OutputView.#removeContainer();
 
       const app = new App();

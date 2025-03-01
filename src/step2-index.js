@@ -2,3 +2,4 @@ import App from './web/App.js';
 
 const app = new App();
 app.init();
+app.attachFormEventListener();

@@ -9,7 +9,9 @@ export default class App {
   init() {
     OutputView.renderContainer();
     OutputView.renderPurchaseCountInput();
+  }
 
+  attachFormEventListener() {
     window.addEventListener('submit', (formSubmitEvent) => {
       formSubmitEvent.preventDefault();
 
@@ -24,6 +26,8 @@ export default class App {
 
   #handlePurchaseFormSubmit() {
     const purchaseAmount = InputView.readPurchaseAmount();
+
+    console.log(purchaseAmount);
 
     OutputView.disablePurchaseSubmitButton();
 
