@@ -5,17 +5,21 @@ import { calculateMatchCount, calculateProfitRate } from './lib/utils.js';
 
 const container = document.getElementById('container');
 
+let purchasedLottos;
+
 const handleSubmit = (e) => {
   e.preventDefault();
+  if (purchasedLottos) return;
 
   const purchaseAmount = document.querySelector('input')?.value;
 
   const purchaseCount = LottoShop.calculateLottoCount(purchaseAmount);
-  const purchasedLottos = LottoShop.createLotto(purchaseCount);
+  purchasedLottos = LottoShop.createLotto(purchaseCount);
 
   const lottoInfoContainer = document.createElement('div');
+  lottoInfoContainer.className = 'lotto-info-container';
   lottoInfoContainer.innerHTML = `
-    <section>
+    <section class='lotto-info'>
       <p>총 ${purchaseCount}개를 구매하였습니다.</p>
       <ul>
         ${purchasedLottos.map((purchasedLotto) => `<li>${purchasedLotto.numbers.join(', ')}</li>`).join('')}
@@ -24,19 +28,25 @@ const handleSubmit = (e) => {
     <form id="result">
       <p>지난 주 당첨번호 6개와 보너스 번호 1개를 입력해주세요.</p>
       <div>
-        <span>당첨 번호</span>
-        <input class='winning-number' value='1' />
-        <input class='winning-number' value='2' />
-        <input class='winning-number' value='3' />
-        <input class='winning-number' value='4' />
-        <input class='winning-number' value='5' />
-        <input class='winning-number' value='6' />
+        <div class="winning-number-box">
+          <label>당첨 번호</label>
+          <div>
+            <input class='winning-number' value='1' />
+            <input class='winning-number' value='2' />
+            <input class='winning-number' value='3' />
+            <input class='winning-number' value='4' />
+            <input class='winning-number' value='5' />
+            <input class='winning-number' value='6' />
+          </div>
+        </div>
+        <div class="bonus-number-box">
+          <label>보너스 번호</label>
+          <div>
+            <input class='bonus-number' value='7' />
+          </div>
+        </div>
       </div>
-      <div>
-        <span>보너스 번호</span>
-        <input class='bonus-number' value='7' />
-      </div>
-      <button id='showResult'>결과 확인하기</button>
+      <button id='show-result'>결과 확인하기</button>
     </form>
   `;
 
