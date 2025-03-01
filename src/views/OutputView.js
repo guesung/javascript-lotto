@@ -30,11 +30,7 @@ export default class OutputView {
   }
 
   static #getBonusOutput(isBonusNumber) {
-    if (isBonusNumber) {
-      return ', 보너스 볼 일치';
-    }
-
-    return '';
+    return isBonusNumber ? ', 보너스 볼 일치' : '';
   }
 
   static printProfitRate(profitRate) {
