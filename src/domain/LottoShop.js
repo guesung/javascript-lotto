@@ -3,11 +3,9 @@ import { generateUniqueNumbers } from '../lib/utils.js';
 import Lotto from './Lotto.js';
 
 export default class LottoShop {
-  static calculateLottoCount(purchaseAmount) {
-    return Math.floor(purchaseAmount / LOTTO_PRICE);
-  }
+  static createLotto(purchaseAmount) {
+    const purchaseCount = Math.floor(purchaseAmount / LOTTO_PRICE);
 
-  static createLotto(purchaseCount) {
     return Array.from({ length: purchaseCount }, () => new Lotto(LottoShop.#createLottoNumber()));
   }
 

@@ -5,9 +5,8 @@ import { InputView, OutputView } from './views/index.js';
 export default class App {
   async run() {
     const purchaseAmount = await this.#retryReadUntilSuccess(InputView.readPurchaseAmount);
-    const purchaseCount = LottoShop.calculateLottoCount(purchaseAmount);
-    OutputView.printPurchaseCount(purchaseCount);
-    const purchasedLottos = LottoShop.createLotto(purchaseCount);
+    const purchasedLottos = LottoShop.createLotto(purchaseAmount);
+    OutputView.printPurchaseCount(purchasedLottos.length);
 
     OutputView.printPurchasedLottos(purchasedLottos);
 
