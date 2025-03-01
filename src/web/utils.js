@@ -8,8 +8,3 @@ export const createDivElement = (attributes) => {
 
   return divElement;
 };
-
-export const appendContainer = (element) => {
-  const container = document.getElementById('container');
-  container.appendChild(element);
-};

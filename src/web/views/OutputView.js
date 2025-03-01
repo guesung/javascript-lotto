@@ -65,7 +65,12 @@ export default class OutputView {
               <div>
                 ${new Array(LOTTO_LENGTH)
                   .fill(null)
-                  .map((_, index) => `<input class="winning__input--lotto-number" value="${index + 1}" />`)
+                  .map(
+                    (_, index) =>
+                      `<input class="winning__input--lotto-number" value="${
+                        index + 1
+                      }" maxlength="2" min="1" max="45" />`,
+                  )
                   .join('')}
               </div>
             </div>
