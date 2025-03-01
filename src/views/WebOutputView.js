@@ -1,3 +1,4 @@
+import App2 from '../App2.js';
 import { CLASS_NAME_MAP, ID_MAP } from '../dom/constants.js';
 import { appendContainer, createDivElement } from '../dom/utils.js';
 import { BONUS_NUMBER_COUNT, LOTTO_LENGTH, LOTTO_RANK_INFO, SEPERATOR } from '../lib/constants.js';
@@ -5,15 +6,15 @@ import { calculateMatchCount } from '../lib/utils.js';
 
 export default class WebOutputView {
   static printPurchaseCountInput() {
-    this.#print(`
+    this.#printApp(`
       <header>🎱 행운의 로또</header>
-      <div id="container">
+      <div id="${ID_MAP.container}">
         <h2>🎱내 번호 당첨 번호 확인🎱</h2>
 
-        <form id="purchase">
+        <form id="${ID_MAP.form.purchase}">
           <label>구입할 금액을 입력해주세요.</label>
           <div>
-            <input type="text" placeholder="금액" value="5000" id="price" />
+            <input type="text" placeholder="금액" value="5000" id="${CLASS_NAME_MAP.price}" />
             <button>구입</button>
           </div>
         </form>
@@ -109,6 +110,11 @@ export default class WebOutputView {
         input.value = '';
       });
       WebOutputView.#removeModal();
+
+      App2.reset();
+
+      const app2 = new App2();
+      app2.init();
     };
     retryButton.addEventListener('click', handleRetryButton);
   }
@@ -123,8 +129,16 @@ export default class WebOutputView {
     container.removeChild(overlay);
   }
 
+  static #printApp(innerHTML, atributes) {
+    const app = document.getElementById(ID_MAP.app);
+    const element = createDivElement(atributes);
+    element.innerHTML = innerHTML;
+
+    app.appendChild(element);
+  }
+
   static #print(innerHTML, atributes) {
-    const container = document.getElementById('app');
+    const container = document.getElementById(ID_MAP.container);
     const element = createDivElement(atributes);
     element.innerHTML = innerHTML;
 
