@@ -19,7 +19,7 @@ const handlePurchaseSubmit = (event) => {
   WebOutputView.printPurchasedLottos(purchasedLottos);
   WebOutputView.printWinningNumberForm();
 
-  const handleResultButtonClick = (event) => {
+  const handleResultSubmit = (event) => {
     event.preventDefault();
 
     const winningNumbers = WebInputView.readWinNumbers();
@@ -35,7 +35,7 @@ const handlePurchaseSubmit = (event) => {
     WebOutputView.printRetryButton();
   };
 
-  document.getElementById(ID_MAP.form.result).addEventListener('submit', handleResultButtonClick);
+  document.getElementById(ID_MAP.form.result).addEventListener('submit', handleResultSubmit);
 };
 
 document.getElementById(ID_MAP.form.purchase).addEventListener('submit', handlePurchaseSubmit);

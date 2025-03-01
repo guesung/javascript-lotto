@@ -5,6 +5,7 @@ export const ID_MAP = {
   },
   button: {
     retry: 'retry',
+    showResult: 'show-result',
   },
   container: 'container',
 };
