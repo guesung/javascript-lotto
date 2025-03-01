@@ -153,7 +153,7 @@ export default class OutputView {
         input.value = '';
       });
       OutputView.#removeModal();
-      OutputView.#resetContainer();
+      OutputView.#removeContainer();
 
       const app = new App();
       app.init();
@@ -161,18 +161,12 @@ export default class OutputView {
   }
 
   static #removeModal() {
-    const container = document.getElementById('container');
-
-    const modal = container.querySelector('.modal');
-    container.removeChild(modal);
-
-    const overlay = container.querySelector('.overlay');
-    container.removeChild(overlay);
+    container.querySelector('.modal').remove();
+    container.querySelector('.overlay').remove();
   }
 
-  static #resetContainer() {
-    const container = document.getElementById('app');
-    container.innerHTML = '';
+  static #removeContainer() {
+    container.remove();
   }
 
   static #render(innerHTML, attributes, containerId = 'container') {
