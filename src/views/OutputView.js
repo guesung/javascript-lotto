@@ -1,11 +1,7 @@
-import { LOTTO_RANK, OUTPUT_MESSAGES } from '../lib/constants.js';
+import { LOTTO_RANK } from '../lib/constants.js';
 import { calculateMatchCount } from '../lib/utils.js';
 
 export default class OutputView {
-  static #print(message) {
-    console.log(message);
-  }
-
   static printPurchasedLottos(purchasedLottos) {
     purchasedLottos.forEach((lotto) => this.#print(lotto.numbers));
   }
@@ -15,8 +11,8 @@ export default class OutputView {
   }
 
   static printStatistics(lottoRanks) {
-    this.#print(OUTPUT_MESSAGES.statistics());
-    this.#print(OUTPUT_MESSAGES.divider());
+    this.#print('당첨 통계');
+    this.#print('------------');
 
     [...Object.keys(LOTTO_RANK)].reverse().forEach((rank) => {
       const bonusOutput = this.#getBonusOutput(LOTTO_RANK[rank].isBonusNumberRequired);
@@ -39,5 +35,9 @@ export default class OutputView {
 
   static printErrorMessage(error) {
     this.#print(error.message);
+  }
+
+  static #print(message) {
+    console.log(message);
   }
 }
