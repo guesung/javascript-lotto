@@ -2,14 +2,15 @@ import { LottoCompany, LottoShop } from '../domain/index.js';
 import { calculateProfitRate } from '../lib/utils.js';
 import { WebInputView, WebOutputView } from '../views/index.js';
 
-export default class App2 {
+export default class App {
   init() {
     WebOutputView.printContainer();
     WebOutputView.printPurchaseCountInput();
 
-    let purchasedLottos;
+    document.getElementById('purchase').addEventListener('submit', handlePurchaseSubmit);
 
-    const handlePurchaseSubmit = (event) => {
+    let purchasedLottos;
+    function handlePurchaseSubmit(event) {
       event.preventDefault();
 
       if (purchasedLottos) return;
@@ -23,7 +24,9 @@ export default class App2 {
       WebOutputView.printPurchasedLottos(purchasedLottos);
       WebOutputView.printWinningNumberForm();
 
-      const handleResultSubmit = (event) => {
+      document.getElementById('result').addEventListener('submit', handleResultSubmit);
+
+      function handleResultSubmit(event) {
         event.preventDefault();
 
         const winningNumbers = WebInputView.readWinNumbers();
@@ -37,12 +40,8 @@ export default class App2 {
 
         WebOutputView.printStatistics(lottoRanks, profitRate);
         WebOutputView.printRetryButton();
-      };
-
-      document.getElementById('result').addEventListener('submit', handleResultSubmit);
-    };
-
-    document.getElementById('purchase').addEventListener('submit', handlePurchaseSubmit);
+      }
+    }
   }
 
   static reset() {
