@@ -11,16 +11,22 @@ export default class App {
     OutputView.renderPurchaseCountInput();
   }
 
-  attachFormEventListener() {
-    window.addEventListener('submit', (formSubmitEvent) => {
-      formSubmitEvent.preventDefault();
+  attachSubmitEventListener() {
+    window.addEventListener('submit', (submitEvent) => {
+      submitEvent.preventDefault();
 
       try {
-        if (formSubmitEvent.target.classList.contains('purchase__form')) this.#handlePurchaseFormSubmit.call(this);
-        if (formSubmitEvent.target.classList.contains('winning__form')) this.#handleWinningFormSubmit.call(this);
+        if (submitEvent.target.classList.contains('purchase__form')) this.#handlePurchaseFormSubmit.call(this);
+        if (submitEvent.target.classList.contains('winning__form')) this.#handleWinningFormSubmit.call(this);
       } catch (error) {
         window.alert(error.message);
       }
+    });
+  }
+
+  attachClickEventListener() {
+    window.addEventListener('click', (clickEvent) => {
+      if (clickEvent.target.classList.contains('result__button--retry')) this.#handleRetryButtonClick();
     });
   }
 
@@ -45,7 +51,13 @@ export default class App {
     const totalPrize = lottoCompany.calculateTotalProfit(lottoRanks);
     const profitRate = calculateProfitRate(totalPrize, this.#purchasedLottos.length * LOTTO_PRICE);
 
-    OutputView.renderStatistics(lottoRanks, profitRate);
-    OutputView.renderRetryButton();
+    OutputView.renderStatisticModal(lottoRanks, profitRate);
+  }
+
+  #handleRetryButtonClick() {
+    OutputView.resetApp();
+
+    const app = new App();
+    app.init();
   }
 }

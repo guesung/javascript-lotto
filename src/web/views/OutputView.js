@@ -82,7 +82,7 @@ export default class OutputView {
     );
   }
 
-  static renderStatistics(lottoRanks, profitRate) {
+  static renderStatisticModal(lottoRanks, profitRate) {
     this.#render(
       `<article class="result">
         <span class="result__close" aria-label="닫기">X</span>
@@ -148,33 +148,18 @@ export default class OutputView {
       .join('');
   }
 
-  static renderRetryButton() {
-    const retryButton = document.querySelector('.result__button--retry');
-    retryButton.addEventListener('click', handleRetryButton);
-
-    function handleRetryButton() {
-      document.querySelectorAll('input').forEach((input) => {
-        input.value = '';
-      });
-      OutputView.#resetApp();
-
-      const app = new App();
-      app.init();
-    }
-  }
-
   static #removeModal() {
     container.querySelector('.modal')?.remove();
     container.querySelector('.overlay')?.remove();
   }
 
-  static #resetApp() {
+  static resetApp() {
     app.innerHTML = '';
   }
 
   static #render(innerHTML, attributes, containerId = 'container') {
     const container = document.getElementById(containerId);
-    
+
     if (attributes) {
       const element = createDivElement(attributes);
       element.innerHTML = innerHTML;
