@@ -6,10 +6,6 @@ import { InputView, OutputView } from './views/index.js';
 export default class App {
   #purchasedLottos;
 
-  constructor() {
-    this.#purchasedLottos = null;
-  }
-
   init() {
     OutputView.renderContainer();
     OutputView.renderPurchaseCountInput();
@@ -19,7 +15,10 @@ export default class App {
 
   #handlePurchaseSubmit(event) {
     event.preventDefault();
-    if (this.#purchasedLottos) return;
+
+    const purchaseSubmitButton = document.querySelector('.purchase__button-submit');
+    console.log(purchaseSubmitButton);
+    purchaseSubmitButton.disabled = true;
 
     const purchaseAmount = InputView.readPurchaseAmount();
     if (!purchaseAmount) return;

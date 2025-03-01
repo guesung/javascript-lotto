@@ -6,7 +6,7 @@ import { appendContainer, createDivElement } from '../utils.js';
 export default class OutputView {
   static renderContainer() {
     this.#render(
-      `<header class="purchase__title">🎱 행운의 로또</header>
+      `<header class="lotto-title">🎱 행운의 로또</header>
         <main id="container" class="lotto-body"></main>
         <footer class="lotto-primary">Copyright 2023. woowacourse</footer>
       `,
@@ -18,12 +18,12 @@ export default class OutputView {
   static renderPurchaseCountInput() {
     this.#render(
       `<section class="purchase">
-        <h2 class="purchase__title">🎱내 번호 당첨 번호 확인🎱</h2>
+        <h2 class="lotto-title">🎱내 번호 당첨 번호 확인🎱</h2>
         <form class="purchase__form">
           <label for="purchase__amount">구입할 금액을 입력해주세요.</label>
           <div>
-            <input type="text" placeholder="금액" value="5000" id="purchase__amount" class="purchase__input--amount"  />
-            <button>구입</button>
+            <input type="number" placeholder="금액" value="5000" id="purchase__amount" class="purchase__input--amount"  />
+            <button class="purchase__button-submit">구입</button>
           </div>
         </form>
       </section>
@@ -61,7 +61,10 @@ export default class OutputView {
               <div>
                 ${new Array(LOTTO_LENGTH)
                   .fill(null)
-                  .map((_, index) => `<input class="winning__input--lotto-number" value="${index + 1}" />`)
+                  .map(
+                    (_, index) =>
+                      `<input placeholder="1000" class="winning__input--lotto-number" value="${index + 1}" />`,
+                  )
                   .join('')}
               </div>
             </div>

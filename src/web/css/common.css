@@ -15,6 +15,11 @@ body,
   height: 100%;
 }
 
+button:disabled {
+  background-color: var(--lotto-greyscale-3);
+  cursor: not-allowed;
+}
+
 button {
   cursor: pointer;
   background-color: var(--lotto-primary);
