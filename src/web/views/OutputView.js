@@ -144,11 +144,11 @@ export default class OutputView {
 
     if (attributes) {
       const element = createDivElement(attributes);
-      element.innerHTML = innerHTML;
+      element.insertAdjacentHTML('beforeend', innerHTML);
       container.appendChild(element);
       return;
     }
 
-    container.innerHTML += innerHTML;
+    container.insertAdjacentHTML('beforeend', innerHTML);
   }
 }
