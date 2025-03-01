@@ -19,12 +19,12 @@ export default class OutputView {
     this.#print(OUTPUT_MESSAGES.divider());
 
     [...Object.keys(LOTTO_RANK)].reverse().forEach((rank) => {
-      const bonusOutput = this.#getBonusOutput(LOTTO_RANK[rank].isBonusNumber);
+      const bonusOutput = this.#getBonusOutput(LOTTO_RANK[rank].isBonusNumberRequired);
       const rankCount = calculateMatchCount(lottoRanks, rank);
       this.#print(
         `${LOTTO_RANK[rank].winNumber}개 일치${bonusOutput} (${LOTTO_RANK[
           rank
-        ].prize.toLocaleString()}) - ${rankCount}개`,
+        ].prize.toLocaleString()}원) - ${rankCount}개`,
       );
     });
   }
