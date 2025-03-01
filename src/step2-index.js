@@ -3,6 +3,8 @@ import { LottoCompany, LottoShop } from './domain/index.js';
 import { calculateProfitRate } from './lib/utils.js';
 import { WebInputView, WebOutputView } from './views/index.js';
 
+WebOutputView.printPurchaseCountInput();
+
 let purchasedLottos;
 
 const handlePurchaseSubmit = (event) => {

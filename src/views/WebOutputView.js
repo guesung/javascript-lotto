@@ -4,6 +4,23 @@ import { BONUS_NUMBER_COUNT, LOTTO_LENGTH, LOTTO_RANK_INFO, SEPERATOR } from '..
 import { calculateMatchCount } from '../lib/utils.js';
 
 export default class WebOutputView {
+  static printPurchaseCountInput() {
+    this.#print(`
+      <header>🎱 행운의 로또</header>
+      <div id="container">
+        <h2>🎱내 번호 당첨 번호 확인🎱</h2>
+
+        <form id="purchase">
+          <label>구입할 금액을 입력해주세요.</label>
+          <div>
+            <input type="text" placeholder="금액" value="5000" id="price" />
+            <button>구입</button>
+          </div>
+        </form>
+      </div>
+      `);
+  }
+
   static printPurchaseCount(purchaseCount) {
     this.#print(`<p>총 ${purchaseCount}개를 구매하였습니다.</p>`);
   }
@@ -107,7 +124,7 @@ export default class WebOutputView {
   }
 
   static #print(innerHTML, atributes) {
-    const container = document.getElementById(ID_MAP.container);
+    const container = document.getElementById('app');
     const element = createDivElement(atributes);
     element.innerHTML = innerHTML;
 
