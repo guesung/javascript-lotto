@@ -8,8 +8,9 @@ export default class WebOutputView {
   static printContainer() {
     this.#print(
       `
-      <header>🎱 행운의 로또</header>
-      <div id="${ID_MAP.container}"></div>
+      <header class="lotto-title">🎱 행운의 로또</header>
+      <div id="${ID_MAP.container}" class="lotto-body"></div>
+      <footer class="lotto-primary">Copyright 2023. woowacourse</footer>
     `,
       null,
       ID_MAP.app,
@@ -18,7 +19,7 @@ export default class WebOutputView {
 
   static printPurchaseCountInput() {
     this.#print(`
-        <h2>🎱내 번호 당첨 번호 확인🎱</h2>
+        <h2 class="lotto-title">🎱내 번호 당첨 번호 확인🎱</h2>
         <form id="${ID_MAP.form.purchase}">
           <label>구입할 금액을 입력해주세요.</label>
           <div>
