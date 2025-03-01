@@ -18,6 +18,16 @@ export default class OutputView {
       null,
       'app',
     );
+
+    this.#setLayoutCSS();
+  }
+
+  static #setLayoutCSS() {
+    const headerHeight = document.querySelector('header').offsetHeight;
+    document.documentElement.style.setProperty('--header-height', headerHeight + 'px');
+
+    const footerHeight = document.querySelector('footer').offsetHeight;
+    document.documentElement.style.setProperty('--footer-height', footerHeight + 'px');
   }
 
   static renderPurchaseSection() {
