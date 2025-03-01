@@ -1,5 +1,5 @@
-import App2 from '../App2.js';
-import { appendContainer, createDivElement } from '../dom/utils.js';
+import App2 from '../web/App.js';
+import { appendContainer, createDivElement } from '../web/utils.js';
 import { BONUS_NUMBER_COUNT, LOTTO_LENGTH, LOTTO_RANK_INFO, SEPERATOR } from '../lib/constants.js';
 import { calculateMatchCount } from '../lib/utils.js';
 

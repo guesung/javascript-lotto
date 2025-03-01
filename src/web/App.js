@@ -1,6 +1,6 @@
-import { LottoCompany, LottoShop } from './domain/index.js';
-import { calculateProfitRate } from './lib/utils.js';
-import { WebInputView, WebOutputView } from './views/index.js';
+import { LottoCompany, LottoShop } from '../domain/index.js';
+import { calculateProfitRate } from '../lib/utils.js';
+import { WebInputView, WebOutputView } from '../views/index.js';
 
 export default class App2 {
   init() {
