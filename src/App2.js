@@ -5,6 +5,7 @@ import { WebInputView, WebOutputView } from './views/index.js';
 
 export default class App2 {
   init() {
+    WebOutputView.printContainer();
     WebOutputView.printPurchaseCountInput();
 
     let purchasedLottos;

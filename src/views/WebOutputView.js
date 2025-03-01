@@ -5,20 +5,27 @@ import { BONUS_NUMBER_COUNT, LOTTO_LENGTH, LOTTO_RANK_INFO, SEPERATOR } from '..
 import { calculateMatchCount } from '../lib/utils.js';
 
 export default class WebOutputView {
-  static printPurchaseCountInput() {
-    this.#printApp(`
+  static printContainer() {
+    this.#print(
+      `
       <header>🎱 행운의 로또</header>
-      <div id="${ID_MAP.container}">
-        <h2>🎱내 번호 당첨 번호 확인🎱</h2>
+      <div id="${ID_MAP.container}"></div>
+    `,
+      null,
+      ID_MAP.app,
+    );
+  }
 
+  static printPurchaseCountInput() {
+    this.#print(`
+        <h2>🎱내 번호 당첨 번호 확인🎱</h2>
         <form id="${ID_MAP.form.purchase}">
           <label>구입할 금액을 입력해주세요.</label>
           <div>
-            <input type="text" placeholder="금액" value="5000" id="${CLASS_NAME_MAP.price}" />
+            <input type="text" placeholder="금액" value="5000" class="${CLASS_NAME_MAP.price}" />
             <button>구입</button>
           </div>
         </form>
-      </div>
       `);
   }
 
@@ -129,16 +136,8 @@ export default class WebOutputView {
     container.removeChild(overlay);
   }
 
-  static #printApp(innerHTML, atributes) {
-    const app = document.getElementById(ID_MAP.app);
-    const element = createDivElement(atributes);
-    element.innerHTML = innerHTML;
-
-    app.appendChild(element);
-  }
-
-  static #print(innerHTML, atributes) {
-    const container = document.getElementById(ID_MAP.container);
+  static #print(innerHTML, atributes, containerId = ID_MAP.container) {
+    const container = document.getElementById(containerId);
     const element = createDivElement(atributes);
     element.innerHTML = innerHTML;
 
