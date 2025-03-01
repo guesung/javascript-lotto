@@ -1,7 +1,7 @@
 import { COMMAND, ERROR_MESSAGES, LOTTO_PRICE, MAX_LOTTO_NUMBER, MIN_LOTTO_NUMBER } from '../lib/constants.js';
 import { checkUniqueArray } from '../lib/utils.js';
 
-class Validator {
+export default class Validator {
   static validatePurchaseAmount(purchaseAmount) {
     if (!this.#checkIsPositiveInteger(purchaseAmount)) {
       throw new Error(ERROR_MESSAGES.purchaseAmount.positiveInteger);
@@ -49,5 +49,3 @@ class Validator {
     }
   }
 }
-
-export default Validator;

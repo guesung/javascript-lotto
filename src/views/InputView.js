@@ -1,8 +1,8 @@
 import { COMMAND, INPUT_MESSAGES, SEPERATOR } from '../lib/constants.js';
-import { readLineAsync, retryUntilSuccess } from '../lib/utils.js';
+import { readLineAsync } from '../lib/utils.js';
 import Validator from '../validator/Validator.js';
 
-class InputView {
+export default class InputView {
   static async readPurchaseAmount() {
     const rawPurchaseAmount = await readLineAsync(INPUT_MESSAGES.purchaseAmount());
 
@@ -36,5 +36,3 @@ class InputView {
     return retryCommand === COMMAND.yes;
   }
 }
-
-export default InputView;

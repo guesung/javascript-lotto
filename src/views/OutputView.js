@@ -1,7 +1,7 @@
 import { LOTTO_RANK, OUTPUT_MESSAGES } from '../lib/constants.js';
 import { calculateMatchCount } from '../lib/utils.js';
 
-class OutputView {
+export default class OutputView {
   static #print(message) {
     console.log(message);
   }
@@ -45,5 +45,3 @@ class OutputView {
     this.#print(error.message);
   }
 }
-
-export default OutputView;
