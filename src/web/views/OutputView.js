@@ -102,10 +102,14 @@ export default class OutputView {
       { class: 'modal' },
     );
 
+    OutputView.#renderOverlay();
+
     OutputView.#removeModalWhenKeydownEscape();
     OutputView.#removeModalWhenClickOutsideModal();
     OutputView.#removeModalWhenClickCloseButton();
+  }
 
+  static #renderOverlay() {
     const modalOverlay = createDivElement({ class: 'overlay' });
     appendContainer(modalOverlay);
   }

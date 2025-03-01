@@ -24,7 +24,6 @@ export default class App {
 
   #handlePurchaseFormSubmit() {
     const purchaseAmount = InputView.readPurchaseAmount();
-    if (!purchaseAmount) return;
 
     OutputView.disablePurchaseSubmitButton();
 
@@ -36,10 +35,7 @@ export default class App {
 
   #handleWinningFormSubmit() {
     const winningNumbers = InputView.readWinNumbers();
-    if (!winningNumbers) return;
-
     const bonusNumber = InputView.readBonusNumber(winningNumbers);
-    if (!bonusNumber) return;
 
     const lottoCompany = new LottoCompany(winningNumbers, bonusNumber);
     const lottoRanks = lottoCompany.calculateLottoRanks(this.#purchasedLottos);
