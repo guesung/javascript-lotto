@@ -1,6 +1,6 @@
+import Validator from '../helpers/Validator.js';
 import { INPUT_MESSAGES, SEPERATOR, YES } from '../lib/constants.js';
 import { readLineAsync } from '../lib/utils.js';
-import Validator from '../validator/Validator.js';
 
 export default class InputView {
   static async readPurchaseAmount() {
