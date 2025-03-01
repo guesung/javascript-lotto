@@ -4,6 +4,11 @@ import App from '../App.js';
 import { appendContainer, createDivElement } from '../utils.js';
 
 export default class OutputView {
+  static disablePurchaseSubmitButton() {
+    const purchaseSubmitButton = document.querySelector('.purchase__button-submit');
+    purchaseSubmitButton.disabled = true;
+  }
+
   static renderContainer() {
     this.#render(
       `<header class="lotto-title">🎱 행운의 로또</header>
@@ -61,10 +66,7 @@ export default class OutputView {
               <div>
                 ${new Array(LOTTO_LENGTH)
                   .fill(null)
-                  .map(
-                    (_, index) =>
-                      `<input placeholder="1000" class="winning__input--lotto-number" value="${index + 1}" />`,
-                  )
+                  .map((_, index) => `<input class="winning__input--lotto-number" value="${index + 1}" />`)
                   .join('')}
               </div>
             </div>
@@ -100,19 +102,29 @@ export default class OutputView {
       { class: 'modal' },
     );
 
-    window.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') this.#removeModal();
-    });
-
-    window.addEventListener('click', (event) => {
-      if (!event.target.closest('.modal')) this.#removeModal();
-    });
-
-    const resultCloseButton = document.querySelector('.result__close');
-    resultCloseButton.addEventListener('click', OutputView.#removeModal);
+    OutputView.#removeModalWhenKeydownEscape();
+    OutputView.#removeModalWhenClickOutsideModal();
+    OutputView.#removeModalWhenClickCloseButton();
 
     const modalOverlay = createDivElement({ class: 'overlay' });
     appendContainer(modalOverlay);
+  }
+
+  static #removeModalWhenClickCloseButton() {
+    const resultCloseButton = document.querySelector('.result__close');
+    resultCloseButton.addEventListener('click', OutputView.#removeModal);
+  }
+
+  static #removeModalWhenKeydownEscape() {
+    window.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') OutputView.#removeModal();
+    });
+  }
+
+  static #removeModalWhenClickOutsideModal() {
+    window.addEventListener('click', (event) => {
+      if (!event.target.closest('.modal')) OutputView.#removeModal();
+    });
   }
 
   static #renderLottoRanks(lottoRanks) {

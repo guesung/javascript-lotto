@@ -19,9 +19,7 @@ export default class App {
     const purchaseAmount = InputView.readPurchaseAmount();
     if (!purchaseAmount) return;
 
-    // TODO : 추상화
-    const purchaseSubmitButton = document.querySelector('.purchase__button-submit');
-    purchaseSubmitButton.disabled = true;
+    OutputView.disablePurchaseSubmitButton();
 
     this.#purchasedLottos = LottoShop.createLotto(purchaseAmount);
 
