@@ -1,5 +1,4 @@
 import App2 from '../App2.js';
-import { CLASS_NAME_MAP, ID_MAP } from '../dom/constants.js';
 import { appendContainer, createDivElement } from '../dom/utils.js';
 import { BONUS_NUMBER_COUNT, LOTTO_LENGTH, LOTTO_RANK_INFO, SEPERATOR } from '../lib/constants.js';
 import { calculateMatchCount } from '../lib/utils.js';
@@ -8,12 +7,12 @@ export default class WebOutputView {
   static printContainer() {
     this.#print(
       `
-      <header class="lotto-title">🎱 행운의 로또</header>
-      <div id="${ID_MAP.container}" class="lotto-body"></div>
-      <footer class="lotto-primary">Copyright 2023. woowacourse</footer>
-    `,
+        <header class="lotto-title">🎱 행운의 로또</header>
+        <div id="container" class="lotto-body"></div>
+        <footer class="lotto-primary">Copyright 2023. woowacourse</footer>
+      `,
       null,
-      ID_MAP.app,
+      'app',
     );
   }
 
@@ -21,7 +20,7 @@ export default class WebOutputView {
     this.#print(`
       <div id="container__purchase">
         <h2 class="lotto-title">🎱내 번호 당첨 번호 확인🎱</h2>
-        <form id="${ID_MAP.form.purchase}">
+        <form id="purchase">
           <label for="purchase-amount">구입할 금액을 입력해주세요.</label>
           <div>
             <input type="text" placeholder="금액" value="5000" id="purchase-amount" />
@@ -44,9 +43,7 @@ export default class WebOutputView {
           ${purchasedLottos
             .map(
               (purchasedLotto) =>
-                `<li class="${CLASS_NAME_MAP.ticket}"><span>🎟️</span>${purchasedLotto.numbers.join(
-                  `${SEPERATOR} `,
-                )}</li>`,
+                `<li class="ticket"><span>🎟️</span>${purchasedLotto.numbers.join(`${SEPERATOR} `)}</li>`,
             )
             .join('')}
         </ul>
@@ -59,26 +56,26 @@ export default class WebOutputView {
   static printWinningNumberForm() {
     this.#print(`
       <div id="container__winning-numbers">
-        <form id="${ID_MAP.form.result}">
+        <form id="result">
           <p>지난 주 당첨번호 ${LOTTO_LENGTH}개와 보너스 번호 ${BONUS_NUMBER_COUNT}개를 입력해주세요.</p>
-          <div class="${CLASS_NAME_MAP.winningBox}">
-            <div class="${CLASS_NAME_MAP.winningNumberBox}">
+          <div class="winning-box">
+            <div class="winning-number-box">
               <label>당첨 번호</label>
               <div>
                 ${new Array(LOTTO_LENGTH)
                   .fill(null)
-                  .map((_, index) => `<input class="${CLASS_NAME_MAP.winningNumber}" value="${index + 1}" />`)
+                  .map((_, index) => `<input class="winning-number" value="${index + 1}" />`)
                   .join('')}
               </div>
             </div>
-            <div class="${CLASS_NAME_MAP.bonusNumberBox}">
+            <div class="bonus-number-box">
               <label>보너스 번호</label>
               <div>
-                <input class="${CLASS_NAME_MAP.bonusNumber}" value="7" />
+                <input class="bonus-number" value="7" />
               </div>
             </div>
           </div>
-          <button id="${ID_MAP.button.showResult}">결과 확인하기</button>
+          <button id="show-result">결과 확인하기</button>
         </form>
       </div>
     `);
@@ -111,18 +108,18 @@ export default class WebOutputView {
             .join('')}
         </table>
         <p class="profile-rate">당신의 총 수익률은 ${profitRate}%입니다.</p>
-        <button id="${ID_MAP.button.retry}">다시 시작하기</button>
+        <button id="retry">다시 시작하기</button>
       </div>
     `,
-      { class: CLASS_NAME_MAP.modal },
+      { class: 'modal' },
     );
 
-    const modalOverlay = createDivElement({ class: CLASS_NAME_MAP.overlay });
+    const modalOverlay = createDivElement({ class: 'overlay' });
     appendContainer(modalOverlay);
   }
 
   static printRetryButton() {
-    const retryButton = document.getElementById(ID_MAP.button.retry);
+    const retryButton = document.getElementById('retry');
 
     const handleRetryButton = () => {
       document.querySelectorAll('input').forEach((input) => {
@@ -139,16 +136,16 @@ export default class WebOutputView {
   }
 
   static #removeModal() {
-    const container = document.getElementById(ID_MAP.container);
+    const container = document.getElementById('container');
 
-    const modal = container.querySelector(`.${CLASS_NAME_MAP.modal}`);
+    const modal = container.querySelector(`.${'modal'}`);
     container.removeChild(modal);
 
-    const overlay = container.querySelector(`.${CLASS_NAME_MAP.overlay}`);
+    const overlay = container.querySelector(`.${'overlay'}`);
     container.removeChild(overlay);
   }
 
-  static #print(innerHTML, atributes, containerId = ID_MAP.container) {
+  static #print(innerHTML, atributes, containerId = 'container') {
     const container = document.getElementById(containerId);
     const element = createDivElement(atributes);
     element.innerHTML = innerHTML;

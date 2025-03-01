@@ -1,4 +1,3 @@
-import { ID_MAP } from './dom/constants.js';
 import { LottoCompany, LottoShop } from './domain/index.js';
 import { calculateProfitRate } from './lib/utils.js';
 import { WebInputView, WebOutputView } from './views/index.js';
@@ -40,14 +39,14 @@ export default class App2 {
         WebOutputView.printRetryButton();
       };
 
-      document.getElementById(ID_MAP.form.result).addEventListener('submit', handleResultSubmit);
+      document.getElementById('result').addEventListener('submit', handleResultSubmit);
     };
 
-    document.getElementById(ID_MAP.form.purchase).addEventListener('submit', handlePurchaseSubmit);
+    document.getElementById('purchase').addEventListener('submit', handlePurchaseSubmit);
   }
 
   static reset() {
-    const app = document.getElementById(ID_MAP.app);
+    const app = document.getElementById('app');
     app.innerHTML = '';
   }
 }

@@ -1,8 +1,6 @@
-import { ID_MAP } from '../dom/constants.js';
-
 export default class WebInputView {
   static readPurchaseAmount() {
-    const purchaseAmountForm = document.getElementById(ID_MAP.form.purchase);
+    const purchaseAmountForm = document.getElementById('purchase');
     const purchaseAmountInput = purchaseAmountForm?.querySelector('input');
 
     return purchaseAmountInput?.value;
