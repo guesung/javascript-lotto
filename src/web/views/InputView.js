@@ -1,4 +1,4 @@
-export default class WebInputView {
+export default class InputView {
   static readPurchaseAmount() {
     const purchaseAmountForm = document.getElementById('purchase');
     const purchaseAmountInput = purchaseAmountForm?.querySelector('input');

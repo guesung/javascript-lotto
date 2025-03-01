@@ -1,11 +1,11 @@
 import { LottoCompany, LottoShop } from '../domain/index.js';
 import { calculateProfitRate } from '../lib/utils.js';
-import { WebInputView, WebOutputView } from '../views/index.js';
+import { InputView, OutputView } from './views/index.js';
 
 export default class App {
   init() {
-    WebOutputView.printContainer();
-    WebOutputView.printPurchaseCountInput();
+    OutputView.printContainer();
+    OutputView.printPurchaseCountInput();
 
     document.getElementById('purchase').addEventListener('submit', handlePurchaseSubmit);
 
@@ -15,22 +15,22 @@ export default class App {
 
       if (purchasedLottos) return;
 
-      const purchaseAmount = WebInputView.readPurchaseAmount();
+      const purchaseAmount = InputView.readPurchaseAmount();
 
       const purchaseCount = LottoShop.calculateLottoCount(purchaseAmount);
       purchasedLottos = LottoShop.createLotto(purchaseCount);
 
-      WebOutputView.printPurchaseCount(purchaseCount);
-      WebOutputView.printPurchasedLottos(purchasedLottos);
-      WebOutputView.printWinningNumberForm();
+      OutputView.printPurchaseCount(purchaseCount);
+      OutputView.printPurchasedLottos(purchasedLottos);
+      OutputView.printWinningNumberForm();
 
       document.getElementById('result').addEventListener('submit', handleResultSubmit);
 
       function handleResultSubmit(event) {
         event.preventDefault();
 
-        const winningNumbers = WebInputView.readWinNumbers();
-        const bonusNumber = WebInputView.readBonusNumber();
+        const winningNumbers = InputView.readWinNumbers();
+        const bonusNumber = InputView.readBonusNumber();
 
         const lottoCompany = new LottoCompany(winningNumbers, bonusNumber);
         const lottoRanks = lottoCompany.calculateLottoRanks(purchasedLottos);
@@ -38,8 +38,8 @@ export default class App {
         const totalPrize = lottoCompany.calculateTotalProfit(lottoRanks);
         const profitRate = calculateProfitRate(totalPrize, purchaseAmount);
 
-        WebOutputView.printStatistics(lottoRanks, profitRate);
-        WebOutputView.printRetryButton();
+        OutputView.printStatistics(lottoRanks, profitRate);
+        OutputView.printRetryButton();
       }
     }
   }
