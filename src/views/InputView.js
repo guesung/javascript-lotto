@@ -5,9 +5,10 @@ import { readLineAsync } from '../lib/utils.js';
 export default class InputView {
   static async readPurchaseAmount() {
     const rawPurchaseAmount = await readLineAsync(INPUT_MESSAGES.purchaseAmount);
-
     const purchaseAmount = Number(rawPurchaseAmount);
+
     Validator.validatePurchaseAmount(purchaseAmount);
+
     return purchaseAmount;
   }
 
@@ -16,6 +17,7 @@ export default class InputView {
     const winNumbers = rawWinNumber.split(SEPERATOR).map(Number);
 
     Validator.validateWinNumbers(winNumbers);
+
     return winNumbers;
   }
 
