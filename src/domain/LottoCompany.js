@@ -3,6 +3,7 @@ import { LOTTO_RANK, NO_WINNING } from '../lib/constants.js';
 export default class LottoCompany {
   #winNumbers;
   #bonusNumber;
+
   constructor(winNumbers, bonusNumber) {
     this.#winNumbers = winNumbers;
     this.#bonusNumber = bonusNumber;
@@ -12,8 +13,7 @@ export default class LottoCompany {
     return purchasedLottos.map((lotto) => {
       const winningLottoCount = lotto.calculateMatchWinning(this.#winNumbers);
       const isBonusNumber = lotto.includes(this.#bonusNumber);
-      const rank = this.#getRank(winningLottoCount, isBonusNumber);
-      return rank;
+      return this.#getRank(winningLottoCount, isBonusNumber);
     });
   }
 
