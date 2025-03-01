@@ -111,7 +111,7 @@ export default class OutputView {
 
   static #renderOverlay() {
     const modalOverlay = createDivElement({ class: 'overlay' });
-    appendContainer(modalOverlay);
+    container.appendChild(modalOverlay);
   }
 
   static #removeModalWhenClickCloseButton() {
@@ -164,8 +164,8 @@ export default class OutputView {
   }
 
   static #removeModal() {
-    container.querySelector('.modal').remove();
-    container.querySelector('.overlay').remove();
+    container.querySelector('.modal')?.remove();
+    container.querySelector('.overlay')?.remove();
   }
 
   static #removeContainer() {

@@ -3,7 +3,6 @@ export const createDivElement = (attributes) => {
 
   if (attributes)
     Object.entries(attributes).forEach(([attributeKey, attributeValue]) => {
-      console.log(attributeKey, attributeValue);
       divElement.setAttribute(attributeKey, attributeValue);
     });
 

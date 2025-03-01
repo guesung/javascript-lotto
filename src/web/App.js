@@ -27,8 +27,6 @@ export default class App {
   #handlePurchaseFormSubmit() {
     const purchaseAmount = InputView.readPurchaseAmount();
 
-    console.log(purchaseAmount);
-
     OutputView.disablePurchaseSubmitButton();
 
     this.#purchasedLottos = LottoShop.createLotto(purchaseAmount);
