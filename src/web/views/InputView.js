@@ -1,18 +1,42 @@
+import Validator from '../../helpers/Validator.js';
+
 export default class InputView {
   static readPurchaseAmount() {
-    const purchaseAmountForm = document.querySelector('.purchase__form');
-    const purchaseAmountInput = purchaseAmountForm?.querySelector('input');
+    try {
+      const rawPurchaseAmount = document.querySelector('.purchase__input--amount')?.value;
+      const purchaseAmount = Number(rawPurchaseAmount);
 
-    return purchaseAmountInput?.value;
+      Validator.validatePurchaseAmount(purchaseAmount);
+
+      return purchaseAmount;
+    } catch (error) {
+      window.alert(error.message);
+    }
   }
 
   static readWinNumbers() {
-    const winningNumberInputs = document.querySelectorAll('.winning__input--number');
+    try {
+      const winningNumberInputs = document.querySelectorAll('.winning__input--number');
+      const winningNumbers = [...winningNumberInputs].map((winningNumberInput) => Number(winningNumberInput.value));
 
-    return [...winningNumberInputs].map((winningNumberInput) => Number(winningNumberInput.value));
+      Validator.validateWinNumbers(winningNumbers);
+
+      return winningNumbers;
+    } catch (error) {
+      window.alert(error.message);
+    }
   }
 
-  static readBonusNumber() {
-    return Number(document.querySelector('.winning__input--bonus-number').value);
+  static readBonusNumber(winningNumbers) {
+    try {
+      const rawBonusNumber = document.querySelector('.winning__input--bonus-number')?.value;
+      const bonusNumber = Number(rawBonusNumber);
+
+      Validator.validateBonusNumber(bonusNumber, winningNumbers);
+
+      return bonusNumber;
+    } catch (error) {
+      window.alert(error.message);
+    }
   }
 }
