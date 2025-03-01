@@ -3,6 +3,7 @@ export const MAX_LOTTO_NUMBER = 45;
 export const LOTTO_LENGTH = 6;
 export const BONUS_NUMBER_COUNT = 1;
 export const LOTTO_PRICE = 1_000;
+export const MAX_LOTTO_PURCHASE_AMOUNT = 1_000_000_000;
 export const SEPERATOR = ',';
 export const NO_WINNING = '당첨 없음';
 export const YES = 'y';
@@ -13,6 +14,7 @@ export const ERROR_MESSAGES = {
   purchaseAmount: {
     positiveInteger: `${ERROR_MESSAGE_DEFAULT} 양의 정수를 입력해주세요.`,
     thousandUnit: `${ERROR_MESSAGE_DEFAULT} ${LOTTO_PRICE.toLocaleString()}단위로 입력해주세요.`,
+    maxAmount: `${ERROR_MESSAGE_DEFAULT} 1회에 구매 가능한 최대 금액은 1억원입니다.`,
   },
   winNumber: {
     unique: `${ERROR_MESSAGE_DEFAULT} 중복되지 않은 숫자로 입력해주세요.`,

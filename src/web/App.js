@@ -16,12 +16,12 @@ export default class App {
   #handlePurchaseSubmit(event) {
     event.preventDefault();
 
-    const purchaseSubmitButton = document.querySelector('.purchase__button-submit');
-    console.log(purchaseSubmitButton);
-    purchaseSubmitButton.disabled = true;
-
     const purchaseAmount = InputView.readPurchaseAmount();
     if (!purchaseAmount) return;
+
+    // TODO : 추상화
+    const purchaseSubmitButton = document.querySelector('.purchase__button-submit');
+    purchaseSubmitButton.disabled = true;
 
     this.#purchasedLottos = LottoShop.createLotto(purchaseAmount);
 

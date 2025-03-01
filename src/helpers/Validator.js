@@ -1,4 +1,12 @@
-import { ERROR_MESSAGES, LOTTO_PRICE, MAX_LOTTO_NUMBER, MIN_LOTTO_NUMBER, NO, YES } from '../lib/constants.js';
+import {
+  ERROR_MESSAGES,
+  LOTTO_PRICE,
+  MAX_LOTTO_NUMBER,
+  MAX_LOTTO_PURCHASE_AMOUNT,
+  MIN_LOTTO_NUMBER,
+  NO,
+  YES,
+} from '../lib/constants.js';
 import { checkUniqueArray } from '../lib/utils.js';
 
 export default class Validator {
@@ -9,6 +17,10 @@ export default class Validator {
 
     if (purchaseAmount % LOTTO_PRICE !== 0) {
       throw new Error(ERROR_MESSAGES.purchaseAmount.thousandUnit);
+    }
+
+    if (purchaseAmount > MAX_LOTTO_PURCHASE_AMOUNT) {
+      throw new Error(ERROR_MESSAGES.purchaseAmount.maxAmount);
     }
   }
 

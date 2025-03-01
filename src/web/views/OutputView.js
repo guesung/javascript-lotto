@@ -83,7 +83,7 @@ export default class OutputView {
   static renderStatistics(lottoRanks, profitRate) {
     this.#render(
       `<article class="result">
-        <button type="button" class="result__close" aria-label="닫기">X</button>
+        <span class="result__close" aria-label="닫기">X</span>
         <h2 class="lotto-subtitle result__title">🏆 당첨 통계 🏆</h2>
         <table aria-label="로또 당첨 통계">
           <tr class="result__table--title">
@@ -99,6 +99,14 @@ export default class OutputView {
     `,
       { class: 'modal' },
     );
+
+    window.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') this.#removeModal();
+    });
+
+    window.addEventListener('click', (event) => {
+      if (!event.target.closest('.modal')) this.#removeModal();
+    });
 
     const resultCloseButton = document.querySelector('.result__close');
     resultCloseButton.addEventListener('click', OutputView.#removeModal);
