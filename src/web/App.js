@@ -1,48 +1,54 @@
 import { LottoCompany, LottoShop } from '../domain/index.js';
+import { LOTTO_PRICE } from '../lib/constants.js';
 import { calculateProfitRate } from '../lib/utils.js';
 import { InputView, OutputView } from './views/index.js';
 
 export default class App {
+  #purchasedLottos;
+
+  constructor() {
+    this.#purchasedLottos = null;
+  }
+
   init() {
     OutputView.renderContainer();
     OutputView.renderPurchaseCountInput();
 
-    document.querySelector('.purchase__form').addEventListener('submit', handlePurchaseSubmit);
+    document.querySelector('.purchase__form').addEventListener('submit', this.#handlePurchaseSubmit.bind(this));
+  }
 
-    let purchasedLottos;
-    function handlePurchaseSubmit(event) {
-      event.preventDefault();
-      if (purchasedLottos) return;
+  #handlePurchaseSubmit(event) {
+    event.preventDefault();
+    if (this.#purchasedLottos) return;
 
-      const purchaseAmount = InputView.readPurchaseAmount();
-      if (!purchaseAmount) return;
+    const purchaseAmount = InputView.readPurchaseAmount();
+    if (!purchaseAmount) return;
 
-      const purchaseCount = LottoShop.calculateLottoCount(purchaseAmount);
-      purchasedLottos = LottoShop.createLotto(purchaseCount);
+    const purchaseCount = LottoShop.calculateLottoCount(purchaseAmount);
+    this.#purchasedLottos = LottoShop.createLotto(purchaseCount);
 
-      OutputView.renderPurchasedLottos(purchasedLottos);
-      OutputView.renderWinningNumberForm();
+    OutputView.renderPurchasedLottos(this.#purchasedLottos);
+    OutputView.renderWinningNumberForm();
 
-      document.querySelector('.winning__form').addEventListener('submit', handleResultSubmit);
+    document.querySelector('.winning__form').addEventListener('submit', this.#handleResultSubmit.bind(this));
+  }
 
-      function handleResultSubmit(event) {
-        event.preventDefault();
+  #handleResultSubmit(event) {
+    event.preventDefault();
 
-        const winningNumbers = InputView.readWinNumbers();
-        if (!winningNumbers) return;
+    const winningNumbers = InputView.readWinNumbers();
+    if (!winningNumbers) return;
 
-        const bonusNumber = InputView.readBonusNumber(winningNumbers);
-        if (!bonusNumber) return;
+    const bonusNumber = InputView.readBonusNumber(winningNumbers);
+    if (!bonusNumber) return;
 
-        const lottoCompany = new LottoCompany(winningNumbers, bonusNumber);
-        const lottoRanks = lottoCompany.calculateLottoRanks(purchasedLottos);
+    const lottoCompany = new LottoCompany(winningNumbers, bonusNumber);
+    const lottoRanks = lottoCompany.calculateLottoRanks(this.#purchasedLottos);
 
-        const totalPrize = lottoCompany.calculateTotalProfit(lottoRanks);
-        const profitRate = calculateProfitRate(totalPrize, purchaseAmount);
+    const totalPrize = lottoCompany.calculateTotalProfit(lottoRanks);
+    const profitRate = calculateProfitRate(totalPrize, this.#purchasedLottos.length * LOTTO_PRICE);
 
-        OutputView.renderStatistics(lottoRanks, profitRate);
-        OutputView.renderRetryButton();
-      }
-    }
+    OutputView.renderStatistics(lottoRanks, profitRate);
+    OutputView.renderRetryButton();
   }
 }
