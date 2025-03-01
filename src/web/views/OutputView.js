@@ -156,7 +156,7 @@ export default class OutputView {
       document.querySelectorAll('input').forEach((input) => {
         input.value = '';
       });
-      OutputView.#removeContainer();
+      OutputView.#resetApp();
 
       const app = new App();
       app.init();
@@ -168,15 +168,20 @@ export default class OutputView {
     container.querySelector('.overlay')?.remove();
   }
 
-  static #removeContainer() {
-    container.remove();
+  static #resetApp() {
+    app.innerHTML = '';
   }
 
   static #render(innerHTML, attributes, containerId = 'container') {
     const container = document.getElementById(containerId);
-    const element = createDivElement(attributes);
-    element.innerHTML = innerHTML;
+    
+    if (attributes) {
+      const element = createDivElement(attributes);
+      element.innerHTML = innerHTML;
+      container.appendChild(element);
+      return;
+    }
 
-    container.appendChild(element);
+    container.innerHTML += innerHTML;
   }
 }
