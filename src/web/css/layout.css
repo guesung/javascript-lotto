@@ -31,8 +31,8 @@
   display: flex;
   gap: 16px;
 }
-.purchase form > div > input {
-  width: 100%;
+.purchase__input--amount {
+  flex: 1;
 }
 
 .purchased {

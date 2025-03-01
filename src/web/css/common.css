@@ -69,5 +69,10 @@ th {
 
 tr {
   border-bottom: 1px solid var(--lotto-greyscale-3);
-  height: 32px;
+  height: 40px;
+}
+
+td,
+th {
+  vertical-align: middle;
 }
