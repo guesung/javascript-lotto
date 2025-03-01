@@ -5,44 +5,55 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: calc(100vh - 64px);
 }
 
 #container {
-  border: 1px solid var(--lotto-greyscale-1);
+  border: 1px solid var(--lotto-greyscale-3);
+  background: var(--lotto-greyscale-1);
   width: 414px;
+  height: 727px;
   border-radius: 4px;
   padding: 16px;
   padding-bottom: 32px;
 }
 
-/* 로또 구매 */
-#container__purchase form {
+.purchase__container {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+.purchase__container form {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
-#container__purchase form > div {
+.purchase__container form > div {
   display: flex;
   gap: 16px;
 }
-#container__purchase form > div > input {
+.purchase__container form > div > input {
   width: 100%;
 }
 
-/* 로또 구매 결과 */
-#container__winning-numbers button {
-  width: 100%;
-}
-
-.lotto-info-container {
+.purchased__container {
   padding-top: 12px;
   padding-bottom: 12px;
-}
-.lotto-info-container > ul {
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+.purchased__container .purchased__container-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.purchased__container .purchased__container-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.purchased__container .purchased__container-item .purchased__container-item-ticket {
+  font-size: 34px;
 }
 
 .winning__container .winning__form input {
@@ -52,35 +63,35 @@
   height: 36px;
   text-align: center;
 }
-.winning__container .winning__form > div {
+.winning__container .winning__form .winning__box {
   display: flex;
   justify-content: space-between;
 }
-
-.winning__box-numbers div {
+.winning__container .winning__form .winning__box .winning__input--number {
+  margin-right: 8px;
+}
+.winning__container .winning__form .winning__box .winning__input--bonus-number {
+  left: 0;
+}
+.winning__container .winning__form .winning__box .winning__box-bonus-number {
   display: flex;
-  gap: 8px;
+  flex-direction: column;
+  align-items: end;
 }
-
-.winning__box {
-  margin-bottom: 20px;
-}
-
-.ticket {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-.ticket > span {
-  font-size: 34px;
-}
-
-.winning__box-bonus-number {
-  text-align: end;
+.winning__container .winning__form button {
+  width: 100%;
+  margin-top: 24px;
 }
 
 /* 당첨 통계 */
-.result__profile-rate {
+.result__container {
+  display: flex;
+  flex-direction: column;
+}
+.result__container .result__title {
+  margin-bottom: 24px;
+}
+.result__container .result__profile-rate {
   font-weight: 700;
   padding-top: 32px;
   padding-bottom: 32px;
@@ -112,4 +123,4 @@
   bottom: 0;
   width: 100vw;
   height: 100vh;
-} /*# sourceMappingURL=layout.css.map */
+}/*# sourceMappingURL=layout.css.map */

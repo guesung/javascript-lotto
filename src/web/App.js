@@ -20,7 +20,6 @@ export default class App {
       const purchaseCount = LottoShop.calculateLottoCount(purchaseAmount);
       purchasedLottos = LottoShop.createLotto(purchaseCount);
 
-      OutputView.printPurchaseCount(purchaseCount);
       OutputView.printPurchasedLottos(purchasedLottos);
       OutputView.printWinningNumberForm();
 
