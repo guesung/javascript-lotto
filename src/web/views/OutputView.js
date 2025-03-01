@@ -4,8 +4,8 @@ import App from '../App.js';
 import { appendContainer, createDivElement } from '../utils.js';
 
 export default class OutputView {
-  static printContainer() {
-    this.#print(
+  static renderContainer() {
+    this.#render(
       `<header class="purchase__title">🎱 행운의 로또</header>
         <div id="container" class="lotto-body"></div>
         <footer class="lotto-primary">Copyright 2023. woowacourse</footer>
@@ -15,8 +15,8 @@ export default class OutputView {
     );
   }
 
-  static printPurchaseCountInput() {
-    this.#print(
+  static renderPurchaseCountInput() {
+    this.#render(
       `<div class="purchase">
         <h2 class="purchase__title">🎱내 번호 당첨 번호 확인🎱</h2>
         <form class="purchase__form">
@@ -31,8 +31,8 @@ export default class OutputView {
     );
   }
 
-  static printPurchasedLottos(purchasedLottos) {
-    this.#print(
+  static renderPurchasedLottos(purchasedLottos) {
+    this.#render(
       `<div class="purchased">
         <p>총 ${purchasedLottos.length}개를 구매하였습니다.</p>
         <ul class="purchased__list">
@@ -50,8 +50,8 @@ export default class OutputView {
     );
   }
 
-  static printWinningNumberForm() {
-    this.#print(
+  static renderWinningNumberForm() {
+    this.#render(
       `<div class="winning">
         <form class="winning__form">
           <p>지난 주 당첨번호 ${LOTTO_LENGTH}개와 보너스 번호 ${BONUS_NUMBER_COUNT}개를 입력해주세요.</p>
@@ -77,8 +77,8 @@ export default class OutputView {
     );
   }
 
-  static printStatistics(lottoRanks, profitRate) {
-    this.#print(
+  static renderStatistics(lottoRanks, profitRate) {
+    this.#render(
       `<div class="result">
         <div class="result__close">X</div>
         <h2 class="lotto-subtitle result__title">🏆 당첨 통계 🏆</h2>
@@ -88,7 +88,7 @@ export default class OutputView {
             <th>당첨금</th>
             <th>당첨 갯수</th>
           </tr>
-          ${OutputView.#printLottoRanks(lottoRanks)}
+          ${OutputView.#renderLottoRanks(lottoRanks)}
         </table>
         <p class="result__profile-rate">당신의 총 수익률은 ${profitRate}%입니다.</p>
         <button class="result__button--retry">다시 시작하기</button>
@@ -104,7 +104,7 @@ export default class OutputView {
     appendContainer(modalOverlay);
   }
 
-  static #printLottoRanks(lottoRanks) {
+  static #renderLottoRanks(lottoRanks) {
     return [...Object.keys(LOTTO_RANK_INFO)]
       .reverse()
       .map((rank) => {
@@ -121,7 +121,7 @@ export default class OutputView {
       .join('');
   }
 
-  static printRetryButton() {
+  static renderRetryButton() {
     const retryButton = document.querySelector('.result__button--retry');
     retryButton.addEventListener('click', handleRetryButton);
 
@@ -147,16 +147,16 @@ export default class OutputView {
     container.removeChild(overlay);
   }
 
-  static #print(innerHTML, attributes, containerId = 'container') {
+  static #resetContainer() {
+    const container = document.getElementById('app');
+    container.innerHTML = '';
+  }
+
+  static #render(innerHTML, attributes, containerId = 'container') {
     const container = document.getElementById(containerId);
     const element = createDivElement(attributes);
     element.innerHTML = innerHTML;
 
     container.appendChild(element);
-  }
-
-  static #resetContainer() {
-    const container = document.getElementById('app');
-    container.innerHTML = '';
   }
 }
