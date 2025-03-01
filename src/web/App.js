@@ -13,12 +13,16 @@ export default class App {
     window.addEventListener('submit', (formSubmitEvent) => {
       formSubmitEvent.preventDefault();
 
-      if (formSubmitEvent.target.classList.contains('purchase__form')) {
-        this.#handlePurchaseSubmit.call(this);
-      }
+      try {
+        if (formSubmitEvent.target.classList.contains('purchase__form')) {
+          this.#handlePurchaseSubmit.call(this);
+        }
 
-      if (formSubmitEvent.target.classList.contains('winning__form')) {
-        this.#handleResultSubmit.call(this);
+        if (formSubmitEvent.target.classList.contains('winning__form')) {
+          this.#handleResultSubmit.call(this);
+        }
+      } catch (error) {
+        window.alert(error.message);
       }
     });
   }
