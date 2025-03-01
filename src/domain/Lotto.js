@@ -1,27 +1,22 @@
-//@ts-check
-
-import { LOTTO_RANK, NO_WINNING } from "../lib/constants.js";
+import { getIntersectCount } from '../lib/utils.js';
 
 class Lotto {
-  numbers;
+  #numbers;
 
   constructor(numbers) {
-    this.numbers = numbers.sort((a, b) => a - b);
+    this.#numbers = numbers.sort((a, b) => a - b);
   }
 
-  #getRank(winningLottoCount, isBonusNumber) {
-    const rank = Object.keys(LOTTO_RANK).find((rank) => {
-      const info = LOTTO_RANK[rank];
+  calculateMatchWinning(winNumbers) {
+    return getIntersectCount(this.#numbers, winNumbers);
+  }
 
-      if (info.winNumber === winningLottoCount) {
-        if (!info.isBonusNumberRequired) return true;
-        else if (isBonusNumber) return true;
-      }
-      return false;
-    });
-    if (rank === undefined) return NO_WINNING;
+  includes(bonusNumbers) {
+    return this.#numbers.includes(bonusNumbers);
+  }
 
-    return rank;
+  get numbers() {
+    return this.#numbers;
   }
 }
 
