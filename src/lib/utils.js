@@ -1,22 +1,3 @@
-import readline from 'readline';
-
-export const readLineAsync = (query) =>
-  new Promise((resolve, reject) => {
-    if (typeof query !== 'string') {
-      reject(new Error('query must be string'));
-    }
-
-    const rl = readline.createInterface({
-      input: process.stdin,
-      output: process.stdout,
-    });
-
-    rl.question(query, (input) => {
-      rl.close();
-      resolve(input);
-    });
-  });
-
 export const generateRandomNumber = (start, end) => Math.floor(Math.random() * (end + 1 - start)) + start;
 
 export const generateUniqueRandomValue = (array, { start, end }) => {
