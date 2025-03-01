@@ -11,7 +11,7 @@
     "deploy": "vite build --base=/javascript-lotto/ --minify=false && npx gh-pages -d dist",
     "coverage": "jest --coverage"
   },
-  "homepage": "https://{username}.github.io/javascript-lotto",
+  "homepage": "https://guesung.github.io/javascript-lotto",
   "devDependencies": {
     "@babel/cli": "^7.26.4",
     "@babel/core": "^7.26.7",
