@@ -32,7 +32,7 @@ export default class App {
 
   #attachClickEventListener() {
     window.addEventListener('click', (clickEvent) => {
-      if (clickEvent.target.classList.contains('result__button--retry')) this.#handleRetryButtonClick();
+      if (clickEvent.target.classList.contains('result__button--retry')) OutputView.resetApp();
 
       if (clickEvent.target.classList.contains('result__close')) OutputView.removeModal();
       if (!clickEvent.target.closest('.modal')) OutputView.removeModal();
@@ -67,12 +67,5 @@ export default class App {
     const profitRate = calculateProfitRate(totalPrize, this.#purchasedLottos.length * LOTTO_PRICE);
 
     OutputView.renderStatisticModal(lottoRanks, profitRate);
-  }
-
-  #handleRetryButtonClick() {
-    OutputView.resetApp();
-
-    const app = new App();
-    app.init();
   }
 }

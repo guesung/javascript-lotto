@@ -1,5 +1,6 @@
 import { BONUS_NUMBER_COUNT, LOTTO_LENGTH, LOTTO_RANK_INFO, SEPERATOR } from '../../lib/constants.js';
 import { calculateMatchCount } from '../../lib/utils.js';
+import App from '../App.js';
 import { createDivElement } from '../utils.js';
 
 export default class OutputView {
@@ -127,12 +128,15 @@ export default class OutputView {
   }
 
   static removeModal() {
-    app.querySelector('.modal')?.remove();
-    app.querySelector('.overlay')?.remove();
+    document.querySelector('#app').querySelector('.modal')?.remove();
+    document.querySelector('#app').querySelector('.overlay')?.remove();
   }
 
   static resetApp() {
-    app.innerHTML = '';
+    document.querySelector('#app').innerHTML = '';
+
+    const app = new App();
+    app.init();
   }
 
   static #render(innerHTML, attributes, containerId = 'container') {
