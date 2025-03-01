@@ -10,12 +10,20 @@ export default class App {
     OutputView.renderContainer();
     OutputView.renderPurchaseCountInput();
 
-    document.querySelector('.purchase__form').addEventListener('submit', this.#handlePurchaseSubmit.bind(this));
+    window.addEventListener('submit', (formSubmitEvent) => {
+      formSubmitEvent.preventDefault();
+
+      if (formSubmitEvent.target.classList.contains('purchase__form')) {
+        this.#handlePurchaseSubmit.call(this);
+      }
+
+      if (formSubmitEvent.target.classList.contains('winning__form')) {
+        this.#handleResultSubmit.call(this);
+      }
+    });
   }
 
-  #handlePurchaseSubmit(event) {
-    event.preventDefault();
-
+  #handlePurchaseSubmit() {
     const purchaseAmount = InputView.readPurchaseAmount();
     if (!purchaseAmount) return;
 
@@ -25,13 +33,9 @@ export default class App {
 
     OutputView.renderPurchasedLottos(this.#purchasedLottos);
     OutputView.renderWinningNumberForm();
-
-    document.querySelector('.winning__form').addEventListener('submit', this.#handleResultSubmit.bind(this));
   }
 
-  #handleResultSubmit(event) {
-    event.preventDefault();
-
+  #handleResultSubmit() {
     const winningNumbers = InputView.readWinNumbers();
     if (!winningNumbers) return;
 
