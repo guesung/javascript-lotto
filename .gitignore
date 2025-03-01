@@ -24,5 +24,4 @@ dist-ssr
 *.sw?
 
 coverage
-*.scss
 *.css.map

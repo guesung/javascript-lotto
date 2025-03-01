@@ -1,0 +1,155 @@
+/* Wrapper */
+
+#app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#container {
+  border: 1px solid var(--lotto-greyscale-3);
+  background: var(--lotto-greyscale-1);
+  width: 414px;
+  border-radius: 4px;
+  padding: 16px;
+  padding-top: 64px;
+  padding-bottom: 32px;
+}
+
+.purchase {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    > div {
+      display: flex;
+      gap: 16px;
+    }
+  }
+
+  &__input--amount {
+    flex: 1;
+  }
+}
+
+.purchased {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  .purchased__list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .purchased__item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    .purchased__ticket {
+      font-size: 34px;
+    }
+  }
+}
+
+.winning {
+  .winning__form {
+    input {
+      border: 1px solid #b4b4b4;
+      border-radius: 4px;
+      width: 34px;
+      height: 36px;
+      text-align: center;
+    }
+
+    .winning__box {
+      display: flex;
+      justify-content: space-between;
+
+      .winning__input--lotto-number {
+        margin-right: 8px;
+      }
+
+      .winning__input--bonus-number {
+        left: 0;
+      }
+
+      .winning__box-bonus-number {
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+      }
+    }
+
+    button {
+      width: 100%;
+      margin-top: 24px;
+    }
+  }
+}
+
+/* 당첨 통계 */
+
+.result {
+  display: flex;
+  flex-direction: column;
+
+  &__close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+  }
+
+  &__title {
+    margin-bottom: 24px;
+  }
+
+  &__profile-rate {
+    font-weight: 700;
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+
+  width: 400px;
+  padding: 40px;
+  text-align: center;
+
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+
+  transform: translateY(-50%);
+
+  z-index: 100;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.overlay {
+  background-color: black;
+  opacity: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+}
