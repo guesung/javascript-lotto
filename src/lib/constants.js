@@ -34,7 +34,7 @@ export const INPUT_MESSAGES = {
   retry: `다시 시작하시겠습니까? (${YES}/${NO})`,
 };
 
-export const LOTTO_RANK = {
+export const LOTTO_RANK_INFO = {
   1: { winNumber: 6, isBonusNumberRequired: false, prize: 2_000_000_000 },
   2: { winNumber: 5, isBonusNumberRequired: true, prize: 30_000_000 },
   3: { winNumber: 5, isBonusNumberRequired: false, prize: 1_500_000 },

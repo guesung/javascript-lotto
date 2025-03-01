@@ -3,7 +3,7 @@ import { checkUniqueArray } from '../lib/utils.js';
 
 export default class Validator {
   static validatePurchaseAmount(purchaseAmount) {
-    if (!this.#checkIsPositiveInteger(purchaseAmount)) {
+    if (!this.#checkPositiveInteger(purchaseAmount)) {
       throw new Error(ERROR_MESSAGES.purchaseAmount.positiveInteger);
     }
 
@@ -15,7 +15,7 @@ export default class Validator {
   static validateWinNumbers(winNumbers) {
     if (
       winNumbers.length !== 6 ||
-      winNumbers.some((number) => !this.#checkIsInLottoNumberRange(number) || !this.#checkIsPositiveInteger(number))
+      winNumbers.some((number) => !this.#checkInLottoNumberRange(number) || !this.#checkPositiveInteger(number))
     ) {
       throw new Error(ERROR_MESSAGES.winNumber.range);
     }
@@ -26,7 +26,7 @@ export default class Validator {
   }
 
   static validateBonusNumber(bonusNumber, winNumbers) {
-    if (!this.#checkIsPositiveInteger(bonusNumber) || !this.#checkIsInLottoNumberRange(bonusNumber)) {
+    if (!this.#checkPositiveInteger(bonusNumber) || !this.#checkInLottoNumberRange(bonusNumber)) {
       throw new Error(ERROR_MESSAGES.bonusNumber.range);
     }
 
@@ -35,11 +35,11 @@ export default class Validator {
     }
   }
 
-  static #checkIsPositiveInteger(value) {
+  static #checkPositiveInteger(value) {
     return !Number.isNaN(value) && value > 0 && Number.isInteger(value);
   }
 
-  static #checkIsInLottoNumberRange(value) {
+  static #checkInLottoNumberRange(value) {
     return value >= MIN_LOTTO_NUMBER && value <= MAX_LOTTO_NUMBER;
   }
 

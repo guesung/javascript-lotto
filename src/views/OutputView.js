@@ -1,4 +1,4 @@
-import { LOTTO_RANK } from '../lib/constants.js';
+import { LOTTO_RANK_INFO } from '../lib/constants.js';
 import { calculateMatchCount } from '../lib/utils.js';
 
 export default class OutputView {
@@ -14,11 +14,11 @@ export default class OutputView {
     this.#print('당첨 통계');
     this.#print('------------');
 
-    [...Object.keys(LOTTO_RANK)].reverse().forEach((rank) => {
-      const bonusOutput = this.#getBonusOutput(LOTTO_RANK[rank].isBonusNumberRequired);
+    [...Object.keys(LOTTO_RANK_INFO)].reverse().forEach((rank) => {
+      const bonusOutput = this.#getBonusOutput(LOTTO_RANK_INFO[rank].isBonusNumberRequired);
       const rankCount = calculateMatchCount(lottoRanks, rank);
       this.#print(
-        `${LOTTO_RANK[rank].winNumber}개 일치${bonusOutput} (${LOTTO_RANK[
+        `${LOTTO_RANK_INFO[rank].winNumber}개 일치${bonusOutput} (${LOTTO_RANK_INFO[
           rank
         ].prize.toLocaleString()}원) - ${rankCount}개`,
       );
