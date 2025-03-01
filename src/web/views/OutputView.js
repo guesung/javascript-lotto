@@ -4,11 +4,6 @@ import App from '../App.js';
 import { createDivElement } from '../utils.js';
 
 export default class OutputView {
-  static disablePurchaseSubmitButton() {
-    const purchaseSubmitButton = document.querySelector('.purchase__button-submit');
-    purchaseSubmitButton.disabled = true;
-  }
-
   static renderLayout() {
     this.#render(
       `<header class="lotto-title">🎱 행운의 로또</header>
@@ -28,6 +23,14 @@ export default class OutputView {
 
     const footerHeight = document.querySelector('footer').offsetHeight;
     document.documentElement.style.setProperty('--footer-height', footerHeight + 'px');
+  }
+
+  static disablePurchaseForm() {
+    const purchaseSubmitButton = document.querySelector('.purchase__button-submit');
+    purchaseSubmitButton.disabled = true;
+
+    const purchaseInput = document.querySelector('.purchase__input--amount');
+    purchaseInput.disabled = true;
   }
 
   static renderPurchaseSection() {
