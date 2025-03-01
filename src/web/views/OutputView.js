@@ -1,7 +1,6 @@
 import { BONUS_NUMBER_COUNT, LOTTO_LENGTH, LOTTO_RANK_INFO, SEPERATOR } from '../../lib/constants.js';
 import { calculateMatchCount } from '../../lib/utils.js';
-import App from '../App.js';
-import { appendContainer, createDivElement } from '../utils.js';
+import { createDivElement } from '../utils.js';
 
 export default class OutputView {
   static disablePurchaseSubmitButton() {
@@ -9,7 +8,7 @@ export default class OutputView {
     purchaseSubmitButton.disabled = true;
   }
 
-  static renderContainer() {
+  static renderLayout() {
     this.#render(
       `<header class="lotto-title">🎱 행운의 로또</header>
         <main id="container" class="lotto-body"></main>
@@ -20,7 +19,7 @@ export default class OutputView {
     );
   }
 
-  static renderPurchaseCountInput() {
+  static renderPurchaseSection() {
     this.#render(
       `<section class="purchase">
         <h2 class="lotto-title">🎱내 번호 당첨 번호 확인🎱</h2>
@@ -36,7 +35,7 @@ export default class OutputView {
     );
   }
 
-  static renderPurchasedLottos(purchasedLottos) {
+  static renderPurchasedSection(purchasedLottos) {
     this.#render(
       `<section class="purchased">
         <p>총 ${purchasedLottos.length}개를 구매하였습니다.</p>
@@ -55,7 +54,7 @@ export default class OutputView {
     );
   }
 
-  static renderWinningNumberForm() {
+  static renderWinningNumberSection() {
     this.#render(
       `<section class="winning">
         <form class="winning__form">
@@ -84,7 +83,7 @@ export default class OutputView {
 
   static renderStatisticModal(lottoRanks, profitRate) {
     this.#render(
-      `<article class="result">
+      `<article class="modal result">
         <span class="result__close" aria-label="닫기">X</span>
         <h2 class="lotto-subtitle result__title">🏆 당첨 통계 🏆</h2>
         <table aria-label="로또 당첨 통계">
@@ -93,45 +92,19 @@ export default class OutputView {
             <th>당첨금</th>
             <th>당첨 갯수</th>
           </tr>
-          ${OutputView.#renderLottoRanks(lottoRanks)}
+          ${OutputView.#getLottoRanksOutput(lottoRanks)}
         </table>
         <p class="result__profile-rate">당신의 총 수익률은 ${profitRate}%입니다.</p>
         <button class="result__button--retry">다시 시작하기</button>
       </article>
+      <div class="overlay" />
     `,
-      { class: 'modal' },
+      null,
+      'app',
     );
-
-    OutputView.#renderOverlay();
-
-    OutputView.#removeModalWhenKeydownEscape();
-    OutputView.#removeModalWhenClickOutsideModal();
-    OutputView.#removeModalWhenClickCloseButton();
   }
 
-  static #renderOverlay() {
-    const modalOverlay = createDivElement({ class: 'overlay' });
-    container.appendChild(modalOverlay);
-  }
-
-  static #removeModalWhenClickCloseButton() {
-    const resultCloseButton = document.querySelector('.result__close');
-    resultCloseButton.addEventListener('click', OutputView.#removeModal);
-  }
-
-  static #removeModalWhenKeydownEscape() {
-    window.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') OutputView.#removeModal();
-    });
-  }
-
-  static #removeModalWhenClickOutsideModal() {
-    window.addEventListener('click', (event) => {
-      if (!event.target.closest('.modal')) OutputView.#removeModal();
-    });
-  }
-
-  static #renderLottoRanks(lottoRanks) {
+  static #getLottoRanksOutput(lottoRanks) {
     return [...Object.keys(LOTTO_RANK_INFO)]
       .reverse()
       .map((rank) => {
@@ -148,9 +121,9 @@ export default class OutputView {
       .join('');
   }
 
-  static #removeModal() {
-    container.querySelector('.modal')?.remove();
-    container.querySelector('.overlay')?.remove();
+  static removeModal() {
+    app.querySelector('.modal')?.remove();
+    app.querySelector('.overlay')?.remove();
   }
 
   static resetApp() {

@@ -7,11 +7,17 @@ export default class App {
   #purchasedLottos;
 
   init() {
-    OutputView.renderContainer();
-    OutputView.renderPurchaseCountInput();
+    OutputView.renderLayout();
+    OutputView.renderPurchaseSection();
   }
 
-  attachSubmitEventListener() {
+  attachEventListener() {
+    this.#attachSubmitEventListener();
+    this.#attachClickEventListener();
+    this.#attachKeyDownEventListener();
+  }
+
+  #attachSubmitEventListener() {
     window.addEventListener('submit', (submitEvent) => {
       submitEvent.preventDefault();
 
@@ -24,9 +30,18 @@ export default class App {
     });
   }
 
-  attachClickEventListener() {
+  #attachClickEventListener() {
     window.addEventListener('click', (clickEvent) => {
       if (clickEvent.target.classList.contains('result__button--retry')) this.#handleRetryButtonClick();
+
+      if (clickEvent.target.classList.contains('result__close')) OutputView.removeModal();
+      if (!clickEvent.target.closest('.modal')) OutputView.removeModal();
+    });
+  }
+
+  #attachKeyDownEventListener() {
+    window.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') OutputView.removeModal();
     });
   }
 
@@ -37,8 +52,8 @@ export default class App {
 
     this.#purchasedLottos = LottoShop.createLotto(purchaseAmount);
 
-    OutputView.renderPurchasedLottos(this.#purchasedLottos);
-    OutputView.renderWinningNumberForm();
+    OutputView.renderPurchasedSection(this.#purchasedLottos);
+    OutputView.renderWinningNumberSection();
   }
 
   #handleWinningFormSubmit() {

@@ -2,5 +2,4 @@ import App from './web/App.js';
 
 const app = new App();
 app.init();
-app.attachSubmitEventListener();
-app.attachClickEventListener();
+app.attachEventListener();
