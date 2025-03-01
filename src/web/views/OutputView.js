@@ -7,7 +7,7 @@ export default class OutputView {
   static renderContainer() {
     this.#render(
       `<header class="purchase__title">🎱 행운의 로또</header>
-        <div id="container" class="lotto-body"></div>
+        <main id="container" class="lotto-body"></main>
         <footer class="lotto-primary">Copyright 2023. woowacourse</footer>
       `,
       null,
@@ -17,7 +17,7 @@ export default class OutputView {
 
   static renderPurchaseCountInput() {
     this.#render(
-      `<div class="purchase">
+      `<section class="purchase">
         <h2 class="purchase__title">🎱내 번호 당첨 번호 확인🎱</h2>
         <form class="purchase__form">
           <label for="purchase__amount">구입할 금액을 입력해주세요.</label>
@@ -26,14 +26,14 @@ export default class OutputView {
             <button>구입</button>
           </div>
         </form>
-      </div>
+      </section>
       `,
     );
   }
 
   static renderPurchasedLottos(purchasedLottos) {
     this.#render(
-      `<div class="purchased">
+      `<section class="purchased">
         <p>총 ${purchasedLottos.length}개를 구매하였습니다.</p>
         <ul class="purchased__list">
           ${purchasedLottos
@@ -45,14 +45,14 @@ export default class OutputView {
             )
             .join('')}
         </ul>
-      </div>
+      </section>
     `,
     );
   }
 
   static renderWinningNumberForm() {
     this.#render(
-      `<div class="winning">
+      `<section class="winning">
         <form class="winning__form">
           <p>지난 주 당첨번호 ${LOTTO_LENGTH}개와 보너스 번호 ${BONUS_NUMBER_COUNT}개를 입력해주세요.</p>
           <div class="winning__box">
@@ -72,17 +72,17 @@ export default class OutputView {
           </div>
           <button class="winning__button-submit">결과 확인하기</button>
         </form>
-      </div>
+      </section>
     `,
     );
   }
 
   static renderStatistics(lottoRanks, profitRate) {
     this.#render(
-      `<div class="result">
-        <div class="result__close">X</div>
+      `<article class="result">
+        <button type="button" class="result__close" aria-label="닫기">X</button>
         <h2 class="lotto-subtitle result__title">🏆 당첨 통계 🏆</h2>
-        <table>
+        <table aria-label="로또 당첨 통계">
           <tr class="result__table--title">
             <th>일치 갯수</th>
             <th>당첨금</th>
@@ -92,7 +92,7 @@ export default class OutputView {
         </table>
         <p class="result__profile-rate">당신의 총 수익률은 ${profitRate}%입니다.</p>
         <button class="result__button--retry">다시 시작하기</button>
-      </div>
+      </article>
     `,
       { class: 'modal' },
     );
