@@ -10,9 +10,15 @@ const mockGenerateUniqueNumbers = (mockValues) => {
 };
 
 describe('Application', () => {
-  test('정상적인 경우의 출력을 테스트한다.', async () => {
-    const consoleLogSpy = jest.spyOn(console, 'log');
+  let consoleLogSpy;
+  beforeEach(() => {
+    consoleLogSpy = jest.spyOn(console, 'log');
+  });
+  afterEach(() => {
+    jest.resetAllMocks();
+  });
 
+  test('정상적인 경우의 출력을 테스트한다.', async () => {
     mockReadLineAsync(['5000', '1,2,3,4,5,6', '7', 'n']);
     mockGenerateUniqueNumbers([
       [1, 2, 3, 4, 5, 6],
