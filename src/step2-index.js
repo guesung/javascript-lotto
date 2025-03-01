@@ -1,29 +1,21 @@
+import { appendContainer, createDivElement } from './dom/utils.js';
 import { LottoCompany, LottoShop } from './domain/index.js';
 import { LOTTO_RANK_INFO } from './lib/constants.js';
 import { calculateMatchCount, calculateProfitRate } from './lib/utils.js';
 
-const createDivElement = (attributes) => {
-  const divElement = document.createElement('div');
-
-  if (attributes?.className) divElement.setAttribute('class', attributes.className);
-  if (attributes?.id) divElement.setAttribute('id', attributes.id);
-
-  return divElement;
-};
-const appendContainer = (element) => {
-  const container = document.getElementById('container');
-  container.appendChild(element);
-};
-
 let purchasedLottos;
 
-const renderLottoPurchase = () => {
+const handlePurchaseSubmit = (event) => {
+  event.preventDefault();
+
+  if (purchasedLottos) return;
+
   const purchaseAmount = document.querySelector('input')?.value;
 
   const purchaseCount = LottoShop.calculateLottoCount(purchaseAmount);
   purchasedLottos = LottoShop.createLotto(purchaseCount);
 
-  const lottoInfoContainer = createDivElement({ className: 'lotto-info-container' });
+  const lottoInfoContainer = createDivElement({ class: 'lotto-info-container' });
   appendContainer(lottoInfoContainer);
 
   lottoInfoContainer.innerHTML = `
@@ -59,14 +51,6 @@ const renderLottoPurchase = () => {
     <button id="show-result">결과 확인하기</button>
   </form>
 `;
-};
-
-const handlePurchaseSubmit = (event) => {
-  event.preventDefault();
-
-  if (purchasedLottos) return;
-
-  renderLottoPurchase();
 
   // ..
 
@@ -83,7 +67,7 @@ const handlePurchaseSubmit = (event) => {
     const totalPrize = lottoCompany.calculateTotalProfit(lottoRanks);
     const profitRate = calculateProfitRate(totalPrize, purchaseAmount);
 
-    const winningStaticsModal = createDivElement({ className: 'modal' });
+    const winningStaticsModal = createDivElement({ class: 'modal' });
     winningStaticsModal.innerHTML = `
       <h2>🏆 당첨 통계 🏆</h2>
       <table>
@@ -112,7 +96,7 @@ const handlePurchaseSubmit = (event) => {
     `;
 
     appendContainer(winningStaticsModal);
-    const modalOverlay = createDivElement({ className: 'modal-overlay' });
+    const modalOverlay = createDivElement({ class: 'modal-overlay' });
     appendContainer(modalOverlay);
 
     const retryButton = document.getElementById('retry');
