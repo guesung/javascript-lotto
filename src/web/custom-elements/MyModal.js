@@ -9,9 +9,6 @@ class MyModal extends HTMLElement {
       <div class="overlay" />
     `;
   }
-  connectedCallback() {
-    this.querySelector('dialog').showModal();
-  }
 }
 
 customElements.define('my-modal', MyModal);
