@@ -102,7 +102,7 @@ export default class OutputView {
 
   static renderStatisticModal(lottoRanks, profitRate) {
     this.#render(
-      `<my-modal >
+      `<my-modal>
         <span class="result__close" aria-label="닫기">X</span>
         <h2 class="lotto-subtitle result__title">🏆 당첨 통계 🏆</h2>
         <table aria-label="로또 당첨 통계">
@@ -140,8 +140,7 @@ export default class OutputView {
   }
 
   static removeModal() {
-    document.querySelector('#app').querySelector('.modal')?.remove();
-    document.querySelector('#app').querySelector('.overlay')?.remove();
+    document.querySelector('#app').querySelector('my-modal')?.remove();
   }
 
   static resetApp() {
