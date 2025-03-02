@@ -29,6 +29,8 @@ export default class LottoCompany {
   }
 
   calculateTotalProfit(lottoRanks) {
-    return lottoRanks.reduce((prev, cur) => (cur === NO_WINNING ? prev : prev + LOTTO_RANK_INFO[cur].prize), 0);
+    return lottoRanks
+      .filter((lottoRank) => lottoRank !== NO_WINNING)
+      .reduce((total, rank) => total + LOTTO_RANK_INFO[rank].prize, 0);
   }
 }
