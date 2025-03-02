@@ -22,8 +22,8 @@ export default class App {
       submitEvent.preventDefault();
 
       try {
-        if (submitEvent.target.classList.contains('purchase__form')) this.#handlePurchaseFormSubmit.call(this);
-        if (submitEvent.target.classList.contains('winning__form')) this.#handleWinningFormSubmit.call(this);
+        if (submitEvent.target.classList.contains('purchase__form')) this.#handlePurchaseFormSubmit();
+        if (submitEvent.target.classList.contains('winning__form')) this.#handleWinningFormSubmit();
       } catch (error) {
         window.alert(error.message);
       }
