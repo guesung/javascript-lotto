@@ -30,3 +30,7 @@ export const retryUntilSuccess = async (callbackFunction, onError) => {
 };
 
 export const calculateMatchCount = (array, number) => array.filter((item) => item === number).length;
+
+export const formatMessage = (message, ...args) => {
+  return args.reduce((prev, cur, index) => prev.replace(`{${index}}`, cur), message);
+};

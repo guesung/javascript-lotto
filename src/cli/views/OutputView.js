@@ -1,40 +1,46 @@
-import { LOTTO_RANK_INFO } from '../../lib/constants.js';
-import { calculateMatchCount } from '../../lib/utils.js';
+import { LOTTO_RANK_INFO, OUTPUT_MESSAGE } from '../../lib/constants.js';
+import { calculateMatchCount, formatMessage } from '../../lib/utils.js';
 
 export default class OutputView {
   static printPurchasedLottos(purchasedLottos) {
-    purchasedLottos.forEach((lotto) => this.#print(lotto.numbers));
+    purchasedLottos.forEach((lotto) => this.#printf(lotto.numbers));
   }
 
   static printPurchaseCount(purchaseCount) {
-    this.#print(`${purchaseCount}개를 구매했습니다.`);
+    this.#printf(OUTPUT_MESSAGE.purchase, purchaseCount);
   }
 
   static printStatistics(lottoRanks) {
-    this.#print('당첨 통계');
-    this.#print('------------');
+    this.#printf(OUTPUT_MESSAGE.statics);
+    this.#printf(OUTPUT_MESSAGE.staticSeperator);
 
     [...Object.keys(LOTTO_RANK_INFO)].reverse().forEach((rank) => {
       const bonusOutput = this.#getBonusOutput(LOTTO_RANK_INFO[rank].isBonusNumberRequired);
       const rankCount = calculateMatchCount(lottoRanks, rank);
-      this.#print(
-        `${LOTTO_RANK_INFO[rank].winNumber}개 일치${bonusOutput} (${LOTTO_RANK_INFO[
-          rank
-        ].prize.toLocaleString()}원) - ${rankCount}개`,
+      this.#printf(
+        OUTPUT_MESSAGE.staticResult,
+        LOTTO_RANK_INFO[rank].winNumber,
+        bonusOutput,
+        LOTTO_RANK_INFO[rank].prize.toLocaleString(),
+        rankCount,
       );
     });
   }
 
   static #getBonusOutput(isBonusNumber) {
-    return isBonusNumber ? ', 보너스 볼 일치' : '';
+    return isBonusNumber ? OUTPUT_MESSAGE.staticBonus : '';
   }
 
   static printProfitRate(profitRate) {
-    this.#print(`총 수익률은 ${profitRate}%입니다.`);
+    this.#printf(OUTPUT_MESSAGE.profiteRate, profitRate);
   }
 
   static printErrorMessage(error) {
-    this.#print(error.message);
+    this.#printf(error.message);
+  }
+
+  static #printf(...args) {
+    this.#print(formatMessage(...args));
   }
 
   static #print(message) {

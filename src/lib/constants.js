@@ -36,6 +36,15 @@ export const INPUT_MESSAGES = {
   retry: `다시 시작하시겠습니까? (${YES}/${NO})`,
 };
 
+export const OUTPUT_MESSAGE = {
+  purchase: '{0}개를 구매했습니다.',
+  statics: '당첨 통계',
+  staticSeperator: '------------',
+  staticResult: `{0}개 일치{1} ({2}원) - {3}개`,
+  staticBonus: ', 보너스 볼 일치',
+  profiteRate: '총 수익률은 {0}%입니다.',
+};
+
 export const LOTTO_RANK_INFO = {
   1: { winNumber: 6, isBonusNumberRequired: false, prize: 2_000_000_000 },
   2: { winNumber: 5, isBonusNumberRequired: true, prize: 30_000_000 },
