@@ -242,7 +242,7 @@ const createDivElement = (attributes) => {
 };
 const _OutputView = class _OutputView {
   static renderLayout() {
-    __privateMethod(this, _OutputView_static, render_fn).call(this, `<header class="lotto-title">🎱 행운의 로또</header>
+    __privateMethod(this, _OutputView_static, render_fn).call(this, `<header class="lotto-title">🎱 행운의 로또2</header>
         <main id="container" class="lotto-body"></main>
         <footer class="lotto-primary">Copyright 2023. woowacourse</footer>
       `, null, "app");
