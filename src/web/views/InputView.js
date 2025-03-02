@@ -2,8 +2,7 @@ import Validator from '../../helpers/Validator.js';
 
 export default class InputView {
   static readPurchaseAmount() {
-    const rawPurchaseAmount = document.querySelector('.purchase__input--amount')?.value;
-    const purchaseAmount = Number(rawPurchaseAmount);
+    const purchaseAmount = document.querySelector('.purchase__input--amount')?.valueAsNumber;
 
     Validator.validatePurchaseAmount(purchaseAmount);
 
