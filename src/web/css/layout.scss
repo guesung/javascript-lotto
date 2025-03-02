@@ -20,6 +20,8 @@
   margin-bottom: var(--footer-height);
 }
 
+/* 로또 구매 */
+
 .purchase {
   display: flex;
   flex-direction: column;
@@ -40,6 +42,8 @@
     flex: 1;
   }
 }
+
+/* 구매한 로또 */
 
 .purchased {
   padding-top: 12px;
@@ -64,6 +68,8 @@
     }
   }
 }
+
+/* 당첨 번호 */
 
 .winning {
   .winning__form {
@@ -123,6 +129,8 @@
     padding-bottom: 32px;
   }
 }
+
+/* 모달 */
 
 .modal {
   position: fixed;
