@@ -1,4 +1,4 @@
-import { BONUS_NUMBER_COUNT, LOTTO_LENGTH, LOTTO_RANK_INFO, SEPERATOR } from '../../lib/constants.js';
+import { BONUS_NUMBER_COUNT, INPUT_MESSAGES, LOTTO_LENGTH, LOTTO_RANK_INFO, SEPERATOR } from '../../lib/constants.js';
 import { calculateMatchCount } from '../../lib/utils.js';
 import App from '../App.js';
 import { createDivElement } from '../utils.js';
@@ -38,7 +38,7 @@ export default class OutputView {
       `<section class="purchase">
         <h2 class="lotto-title">🎱내 번호 당첨 번호 확인🎱</h2>
         <form class="purchase__form">
-          <label for="purchase__amount">구입할 금액을 입력해주세요.</label>
+          <label for="purchase__amount">${INPUT_MESSAGES.purchaseAmount}</label>
           <div>
             <input type="number" placeholder="금액" id="purchase__amount" class="purchase__input--amount"  />
             <button class="purchase__button-submit">구입</button>
