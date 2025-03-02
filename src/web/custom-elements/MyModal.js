@@ -1,4 +1,4 @@
-class Modal extends HTMLElement {
+class MyModal extends HTMLElement {
   constructor() {
     super();
 
@@ -14,4 +14,4 @@ class Modal extends HTMLElement {
   }
 }
 
-customElements.define('my-modal', Modal);
+customElements.define('my-modal', MyModal);
