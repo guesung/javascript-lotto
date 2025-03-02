@@ -1,5 +1,5 @@
-import App from '../src/cli/App.js';
-import InputView from '../src/cli/views/InputView.js';
+import App from '../src/command/App.js';
+import InputView from '../src/command/views/InputView.js';
 import { ERROR_MESSAGES, NO, YES } from '../src/lib/constants';
 import * as utils from '../src/lib/utils.js';
 

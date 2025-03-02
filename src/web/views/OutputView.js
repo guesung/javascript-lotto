@@ -40,7 +40,7 @@ export default class OutputView {
         <form class="purchase__form">
           <label for="purchase__amount">${INPUT_MESSAGES.purchaseAmount}</label>
           <div>
-            <input type="number" placeholder="금액" id="purchase__amount" class="purchase__input--amount"  />
+            <input type="number" placeholder="금액" value="5000" id="purchase__amount" class="purchase__input--amount"  />
             <button class="purchase__button-submit">구입</button>
           </div>
         </form>
@@ -79,13 +79,18 @@ export default class OutputView {
               <div>
                 ${new Array(LOTTO_LENGTH)
                   .fill(null)
-                  .map((_, index) => `<input class="winning__input--lotto-number" maxlength="2" min="1" max="45" />`)
+                  .map(
+                    (_, index) =>
+                      `<input class="winning__input--lotto-number" value="${
+                        index + 1
+                      }" maxlength="2" min="1" max="45" />`,
+                  )
                   .join('')}
               </div>
             </div>
             <div class="winning__box-bonus-number">
               <label>보너스 번호</label>
-              <input class="winning__input--bonus-number" />
+              <input class="winning__input--bonus-number" value="7" />
             </div>
           </div>
           <button class="winning__button-submit">결과 확인하기</button>
