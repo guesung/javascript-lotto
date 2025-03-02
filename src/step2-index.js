@@ -1,4 +1,4 @@
-import * as _ from './web/custom-elements/index.js';
+import './web/custom-elements/index.js';
 import App from './web/App.js';
 
 const app = new App();

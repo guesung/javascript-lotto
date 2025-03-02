@@ -8,34 +8,12 @@
     "sourceType": "module"
   },
   "rules": {
-    "no-process-exit": "warn",
-    "no-console": "off",
-    "import/extensions": [
-      "warn",
-      "never",
-      {
-        "js": "always"
-      }
-    ],
-    "no-constant-condition": "off",
-    "func-style": ["off"],
-
     "lines-between-class-members": ["warn", "always", { "exceptAfterSingleLine": true }],
-    "no-unused-vars": "off",
-    "import/no-cycle": "off",
-    "no-new": "off",
-    "no-restricted-syntax": "off",
-    "import/prefer-default-export": "off",
-    "no-return-await": "off",
-    "simple-import-sort/imports": "warn",
-    "simple-import-sort/exports": "warn",
-    "no-empty-function": "off",
-    "class-methods-use-this": "off",
-    "no-useless-constructor": "off",
-    "max-len": "off",
-    "no-continue": "off",
-    "max-params": ["warn", 2],
-    "max-depth": ["warn", 1]
+    // 프로그래밍 요구사항
+    "functional/no-let": "error",
+    "max-depth": ["error", 1],
+    "max-params": ["error", 2],
+    "max-lines-per-function": ["error", 10]
   },
   "settings": {
     "react": {
