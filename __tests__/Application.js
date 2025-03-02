@@ -21,7 +21,7 @@ describe('Application', () => {
   });
 
   describe('기능 요구사항 테스트', () => {
-    test('정상적인 경우의 출력을 테스트한다.', async () => {
+    it('정상적인 경우의 출력을 테스트한다.', async () => {
       mockReadLineAsync(['5000', '1,2,3,4,5,6', '7', NO]);
       mockGenerateUniqueNumbers([
         [1, 2, 3, 4, 5, 6],
@@ -52,7 +52,7 @@ describe('Application', () => {
       });
     });
 
-    test('로또 구입 금액을 입력하면 구입 금액에 해당하는 만큼 로또를 발행해야 한다.', async () => {
+    it('로또 구입 금액을 입력하면 구입 금액에 해당하는 만큼 로또를 발행해야 한다.', async () => {
       mockReadLineAsync(['1000', '1,2,3,4,5,6', '7', NO]);
 
       const app = new App();
@@ -63,7 +63,7 @@ describe('Application', () => {
       });
     });
 
-    test('로또 번호는 오름차순으로 정렬하여 보여준다.', async () => {
+    it('로또 번호는 오름차순으로 정렬하여 보여준다.', async () => {
       mockReadLineAsync(['1000', '1,2,3,4,5,6', '7', NO]);
       mockGenerateUniqueNumbers([[3, 2, 5, 4, 1, 6]]);
 
@@ -75,7 +75,7 @@ describe('Application', () => {
       });
     });
 
-    test('재시작시 게임을 다시 시작한다.', async () => {
+    it('재시작시 게임을 다시 시작한다.', async () => {
       mockReadLineAsync(['1000', '1,2,3,4,5,6', '7', YES, '1000', '1,2,3,4,5,6', '7', NO]);
       mockGenerateUniqueNumbers([
         [1, 2, 3, 4, 5, 7],
@@ -96,7 +96,7 @@ describe('Application', () => {
 
   describe('예외 사항 처리', () => {
     describe('구입금액', () => {
-      test('구입 금액은 양의 정수여야한다.', async () => {
+      it('구입 금액은 양의 정수여야한다.', async () => {
         mockReadLineAsync(['0', '1000', '1,2,3,4,5,6', '7', NO]);
         mockGenerateUniqueNumbers([[3, 2, 5, 4, 1, 6]]);
 
@@ -107,7 +107,7 @@ describe('Application', () => {
           expect(consoleLogSpy).toHaveBeenCalledWith(expectedConsoleLogMessage);
         });
       });
-      test('구입 금액은 1000으로 나누어 떨어져야한다.', async () => {
+      it('구입 금액은 1000으로 나누어 떨어져야한다.', async () => {
         mockReadLineAsync(['10', '1000', '1,2,3,4,5,6', '7', NO]);
         mockGenerateUniqueNumbers([[3, 2, 5, 4, 1, 6]]);
 
@@ -121,7 +121,7 @@ describe('Application', () => {
     });
 
     describe('당첨 번호', () => {
-      test('당첨 번호는 중복되지 않은 숫자여야한다.', async () => {
+      it('당첨 번호는 중복되지 않은 숫자여야한다.', async () => {
         mockReadLineAsync(['1000', '1,2,3,4,5,5', '1,2,3,4,5,6', '7', NO]);
         mockGenerateUniqueNumbers([[3, 2, 5, 4, 1, 6]]);
 
@@ -149,7 +149,7 @@ describe('Application', () => {
     });
 
     describe('보너스 번호', () => {
-      test('보너스 번호는 당첨 번호와 중복되면 안된다.', async () => {
+      it('보너스 번호는 당첨 번호와 중복되면 안된다.', async () => {
         mockReadLineAsync(['1000', '1,2,3,4,5,6', '6', '7', NO]);
         mockGenerateUniqueNumbers([[3, 2, 5, 4, 1, 6]]);
 
