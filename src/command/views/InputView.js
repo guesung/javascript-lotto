@@ -10,6 +10,7 @@ export default class InputView {
 
     Validator.validatePurchaseAmount(purchaseAmount);
 
+    return purchaseAmount;
   }
 
   static async readWinNumbers() {
