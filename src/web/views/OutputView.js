@@ -102,7 +102,7 @@ export default class OutputView {
 
   static renderStatisticModal(lottoRanks, profitRate) {
     this.#render(
-      `<article class="modal result">
+      `<my-modal >
         <span class="result__close" aria-label="닫기">X</span>
         <h2 class="lotto-subtitle result__title">🏆 당첨 통계 🏆</h2>
         <table aria-label="로또 당첨 통계">
@@ -115,8 +115,7 @@ export default class OutputView {
         </table>
         <p class="result__profile-rate">당신의 총 수익률은 ${profitRate}%입니다.</p>
         <button class="result__button--retry">다시 시작하기</button>
-      </article>
-      <div class="overlay" />
+      </my-modal>
     `,
       null,
       'app',
