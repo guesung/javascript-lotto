@@ -7,7 +7,7 @@ var C=n=>{throw TypeError(n)};var T=(n,e,t)=>e.has(n)||C("Cannot "+t);var m=(n,e
         <main id="container" class="lotto-body"></main>
         <footer class="lotto-primary">Copyright 2023. woowacourse</footer>
       `,null,"app"),o(this,u,G).call(this)}static disablePurchaseForm(){const e=document.querySelector(".purchase__button-submit");e.disabled=!0;const t=document.querySelector(".purchase__input--amount");t.disabled=!0}static renderPurchaseSection(){o(this,u,f).call(this,`<section class="purchase">
-        <h2 class="lotto-title">🎱내 번호 당첨 번호 확인🎱</h2>
+        <h2 class="lotto-title">🎱내 번호 당첨 번호 확인2🎱</h2>
         <form class="purchase__form">
           <label for="purchase__amount">${le.purchaseAmount}</label>
           <div>
