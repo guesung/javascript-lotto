@@ -10,13 +10,14 @@ export default class OutputView {
     this.#printf(OUTPUT_MESSAGE.purchase, purchaseCount);
   }
 
-  static printStatistics(lottoRanks) {
+  static printStatistics(lottoRankMap) {
     this.#printf(OUTPUT_MESSAGE.statics);
     this.#printf(OUTPUT_MESSAGE.staticSeperator);
 
     [...Object.keys(LOTTO_RANK_INFO)].reverse().forEach((rank) => {
       const bonusOutput = this.#getBonusOutput(LOTTO_RANK_INFO[rank].isBonusNumberRequired);
-      const rankCount = calculateMatchCount(lottoRanks, rank);
+      const rankCount = lottoRankMap.get(rank) ?? 0;
+
       this.#printf(
         OUTPUT_MESSAGE.staticResult,
         LOTTO_RANK_INFO[rank].winNumber,

@@ -100,7 +100,7 @@ export default class OutputView {
     );
   }
 
-  static renderStatisticModal(lottoRanks, profitRate) {
+  static renderStatisticModal(lottoRankMap, profitRate) {
     this.#render(
       `<my-modal>
         <span class="result__close" aria-label="닫기">X</span>
@@ -111,7 +111,7 @@ export default class OutputView {
             <th>당첨금</th>
             <th>당첨 갯수</th>
           </tr>
-          ${OutputView.#getLottoRanksOutput(lottoRanks)}
+          ${OutputView.#getLottoRanksOutput(lottoRankMap)}
         </table>
         <p class="result__profile-rate">당신의 총 수익률은 ${profitRate}%입니다.</p>
         <button class="result__button--retry">다시 시작하기</button>
@@ -122,12 +122,13 @@ export default class OutputView {
     );
   }
 
-  static #getLottoRanksOutput(lottoRanks) {
+  static #getLottoRanksOutput(lottoRankMap) {
     return [...Object.keys(LOTTO_RANK_INFO)]
       .reverse()
       .map((rank) => {
         const lottoRankInfo = LOTTO_RANK_INFO[rank];
-        const rankCount = calculateMatchCount(lottoRanks, rank);
+        const rankCount = lottoRankMap.get(rank) ?? 0;
+
         return `
           <tr>
             <td>${lottoRankInfo.winNumber}개</td>

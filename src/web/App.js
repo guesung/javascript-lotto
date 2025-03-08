@@ -6,6 +6,10 @@ import { InputView, OutputView } from './views/index.js';
 export default class App {
   #purchasedLottos;
 
+  constructor() {
+    this.#purchasedLottos = [];
+  }
+
   init() {
     OutputView.renderLayout();
     OutputView.renderPurchaseSection();
@@ -61,11 +65,11 @@ export default class App {
     const bonusNumber = InputView.readBonusNumber(winningNumbers);
 
     const lottoCompany = new LottoCompany(winningNumbers, bonusNumber);
-    const lottoRanks = lottoCompany.calculateLottoRanks(this.#purchasedLottos);
+    const lottoRankMap = lottoCompany.calculateLottoRanks(this.#purchasedLottos);
 
-    const totalPrize = lottoCompany.calculateTotalProfit(lottoRanks);
+    const totalPrize = lottoCompany.calculateTotalProfit(lottoRankMap);
     const profitRate = calculateProfitRate(totalPrize, this.#purchasedLottos.length * LOTTO_PRICE);
 
-    OutputView.renderStatisticModal(lottoRanks, profitRate);
+    OutputView.renderStatisticModal(lottoRankMap, profitRate);
   }
 }

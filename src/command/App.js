@@ -14,12 +14,12 @@ export default class App {
     const bonusNumber = await this.#retryReadUntilSuccess(() => InputView.readBonusNumber(winNumbers));
 
     const lottoCompany = new LottoCompany(winNumbers, bonusNumber);
-    const lottoRanks = lottoCompany.calculateLottoRanks(purchasedLottos);
+    const lottoRankMap = lottoCompany.calculateLottoRanks(purchasedLottos);
 
-    const totalPrize = lottoCompany.calculateTotalProfit(lottoRanks);
+    const totalPrize = lottoCompany.calculateTotalProfit(lottoRankMap);
     const profitRate = calculateProfitRate(totalPrize, purchaseAmount);
 
-    OutputView.printStatistics(lottoRanks);
+    OutputView.printStatistics(lottoRankMap);
     OutputView.printProfitRate(profitRate);
 
     const isRetry = await this.#retryReadUntilSuccess(InputView.readRetry);

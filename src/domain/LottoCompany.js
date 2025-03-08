@@ -10,11 +10,16 @@ export default class LottoCompany {
   }
 
   calculateLottoRanks(purchasedLottos) {
-    return purchasedLottos.map((lotto) => {
-      const winningLottoCount = lotto.calculateMatchWinning(this.#winNumbers);
-      const isBonusNumberMatch = lotto.includes(this.#bonusNumber);
-      return this.#getRank(winningLottoCount, isBonusNumberMatch);
-    });
+    return purchasedLottos
+      .map((lotto) => {
+        const winningLottoCount = lotto.calculateMatchWinning(this.#winNumbers);
+        const isBonusNumberMatch = lotto.includes(this.#bonusNumber);
+        return this.#getRank(winningLottoCount, isBonusNumberMatch);
+      })
+      .reduce((prev, cur) => {
+        prev.set(cur, (prev.get(cur) || 0) + 1);
+        return prev;
+      }, new Map());
   }
 
   #getRank(winningLottoCount, isBonusNumberMatch) {
@@ -28,9 +33,10 @@ export default class LottoCompany {
     return rank ?? NO_WINNING;
   }
 
-  calculateTotalProfit(lottoRanks) {
-    return lottoRanks
-      .filter((lottoRank) => lottoRank !== NO_WINNING)
-      .reduce((total, rank) => total + LOTTO_RANK_INFO[rank].prize, 0);
+  calculateTotalProfit(lottoRankMap) {
+    console.log([...lottoRankMap]);
+    return [...lottoRankMap]
+      .filter(([rank]) => rank !== NO_WINNING)
+      .reduce((total, [rank, count]) => total + count * LOTTO_RANK_INFO[rank]?.prize, 0);
   }
 }
